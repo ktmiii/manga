@@ -1,24 +1,29 @@
-# README
+# マンガのススメ
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## サイト概要
+### サイトテーマ
+漫画レビューサイト
 
-Things you may want to cover:
+### テーマを選んだ理由
+漫画が好きでこんなサイトがあったらいいなと思ったから。
 
-* Ruby version
+### ターゲットユーザ
+漫画好きな学生～30,40代向け
 
-* System dependencies
+### 主な利用シーン
+隙間時間に好みの漫画を探したいとき
 
-* Configuration
+## 設計書
+<...>
 
-* Database creation
+## 開発環境
+- OS：Linux(CentOS)
+- 言語：HTML,CSS,JavaScript,Ruby,SQL
+- フレームワーク：Ruby on Rails
+- JSライブラリ：jQuery
+- IDE：Cloud9
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## 使用素材
+- 楽天ブックスAPI(レビューする本を抽出)
+- オープンAI API(おすすめの漫画タイトルを抽出)
+- 
