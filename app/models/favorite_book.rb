@@ -1,0 +1,2 @@
+class FavoriteBook < ApplicationRecord
+end

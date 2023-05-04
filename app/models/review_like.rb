@@ -1,0 +1,2 @@
+class ReviewLike < ApplicationRecord
+end

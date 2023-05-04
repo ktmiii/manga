@@ -1,0 +1,2 @@
+class ReviewComment < ApplicationRecord
+end
