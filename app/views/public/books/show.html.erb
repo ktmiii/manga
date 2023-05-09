@@ -1,0 +1,10 @@
+<%= @book.inspect %>
+
+<%= form_with model: @book, url: new_review_path, method: :get, local: true do |f| %>
+  <%= f.hidden_field :isbn %>
+  <%= f.hidden_field :title %>
+  <%= f.hidden_field :author %>
+  <%= f.hidden_field :image_url %>
+  <%= f.hidden_field :item_url %>
+  <%= f.submit "レビューする" %>
+<% end %>

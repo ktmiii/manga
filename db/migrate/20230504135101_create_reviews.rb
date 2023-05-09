@@ -7,6 +7,7 @@ class CreateReviews < ActiveRecord::Migration[6.1]
       t.text :content, null: false
       t.float :rate, null: false, default: 0
       t.timestamps
+      t.index [:user_id, :book_id], unique: true
     end
   end
 end

@@ -1,0 +1,15 @@
+<%= @book.inspect %>
+
+<%= form_with model: @review, local: true do |f| %>
+  <%= f.text_area :content %>
+  <%= f.select :rate, (1..5) %>
+  <!--親子フォーム（一つのボタンで二種類のデータを送る）-->
+  <%= fields_for @book do |ff| %>
+    <%= ff.hidden_field :isbn %>
+    <%= ff.hidden_field :title %>
+    <%= ff.hidden_field :author %>
+    <%= ff.hidden_field :image_url %>
+    <%= ff.hidden_field :item_url %>
+  <% end %>
+  <%= f.submit %>
+<% end %>
