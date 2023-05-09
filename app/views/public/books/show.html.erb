@@ -1,10 +1,19 @@
-<%= @book.inspect %>
+<div class='container'>
+    <% if flash[:alert] %>
+      <div class="alert alert-danger">
+        <%= flash[:alert] %>
+      </div>
+    <% end %>
+  <%= @book.title %>
+  <%= image_tag @book.image_url + "?_ex=50x50" %>
+  <%= link_to "商品URL", @book.item_url %>
 
-<%= form_with model: @book, url: new_review_path, method: :get, local: true do |f| %>
-  <%= f.hidden_field :isbn %>
-  <%= f.hidden_field :title %>
-  <%= f.hidden_field :author %>
-  <%= f.hidden_field :image_url %>
-  <%= f.hidden_field :item_url %>
-  <%= f.submit "レビューする" %>
-<% end %>
+ <%= form_with model: @book, url: new_review_path, method: :get, local: true do |f| %>
+   <%= f.hidden_field :isbn %>
+   <%= f.hidden_field :title %>
+   <%= f.hidden_field :author %>
+   <%= f.hidden_field :image_url %>
+   <%= f.hidden_field :item_url %>
+   <%= f.submit "レビューする" %>
+ <% end %>
+</div>

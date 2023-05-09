@@ -1,3 +1,11 @@
-<%= @book.inspect %>
-<br>
-<%= @review.inspect %>
+
+<div class='container'>
+  <div class='row'>
+    <div class="col-sm-12 col-md-11 col-lg-10 px-sm-0 mx-auto tr-color p-4">
+
+     <%= image_tag @review.user.get_profile_image(100,100), class: "rounded-circle" %>
+
+
+    </div>
+  </div>
+</div>

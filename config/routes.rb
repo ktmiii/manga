@@ -7,23 +7,23 @@ Rails.application.routes.draw do
   devise_for :admin,skip: [:registrations, :passwords], controllers: {
     sessions: "admin/sessions"
   }
-  
+
   devise_scope :user do
     post 'users/guest_sign_in', to: 'users/sessions#guest_sign_in'
   end
 
-  scope module: :public do 
+  scope module: :public do
     root :to => 'homes#top'
+
     get 'users/withdraw' => 'users#withdraw'
     patch 'users/unsubscribe' => 'users#unsubscribe'
-    get 'users/mypage' => 'users#show'
-    get 'users/edit' => 'users#edit'
-    patch 'users/update' => 'users#update'
-    
+
+
+    resources :users, only: [:show, :edit, :update]
     resources :books, only: [:index, :show]
     resources :reviews
   end
-  
+
   namespace :admin do
     root :to => 'homes#top'
     resources :users, only: [:index, :show, :update]

@@ -1,15 +1,58 @@
-<%= @book.inspect %>
+<div class='container'>
+  <div class='row'>
+    <div class="col-sm-12 col-md-11 col-lg-10 px-sm-0 mx-auto tr-color p-4">
+      <div class="ml-2 mb-5 pl-3 bg-warning">
+        <h4>
+          <i class="fas fa-comment"></i>
+          レビュー投稿フォーム
+        </h4>
+      </div>
+      <div class="row ml-2 mb-5 pl-3">
+       <div class="col-sm-2">
+        <%= image_tag @book.image_url + "?_ex=100x100" %>
+       </div>
+       <div class="col-sm-10 pl-5">
+        <strong><%= @book.title %></strong>
+       </div>
+      </div>
+      <%= form_with model: @review, local: true do |f| %>
+        <div class="form-group">
+          <strong>評価する</strong><hr>
+           <h9>☆の部分をクリックして、5点満点で評価してください。</h9>
+            <div class="form-group row pt-2 pb-4" id="star">
+              <%= f.label :rate,'評価 ', class:'col-md-3 col-form-label' %>
+              <%= f.hidden_field :star, id: :review_star %>
+              <!--star がポイント(jsを呼ぶ)-->
+            </div>
+          <strong>レビューを記入する</strong><hr>
+           <h9>できるだけ具体的に教えてください。</h9>
+            <div class="form-group row pt-2">
+              <%= f.text_area :content, class: "form-control", style: "height: 150px;" %>
+            </div>
 
-<%= form_with model: @review, local: true do |f| %>
-  <%= f.text_area :content %>
-  <%= f.select :rate, (1..5) %>
-  <!--親子フォーム（一つのボタンで二種類のデータを送る）-->
-  <%= fields_for @book do |ff| %>
-    <%= ff.hidden_field :isbn %>
-    <%= ff.hidden_field :title %>
-    <%= ff.hidden_field :author %>
-    <%= ff.hidden_field :image_url %>
-    <%= ff.hidden_field :item_url %>
-  <% end %>
-  <%= f.submit %>
-<% end %>
+        <!--親子フォーム（一つのボタンで二種類のデータを送る）-->
+        <%= fields_for @book do |ff| %>
+          <%= ff.hidden_field :isbn %>
+          <%= ff.hidden_field :title %>
+          <%= ff.hidden_field :author %>
+          <%= ff.hidden_field :image_url %>
+          <%= ff.hidden_field :item_url %>
+        <% end %>
+        <%= f.submit "投稿する" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+
+ <!-- 評価javascript -->
+<script>
+  $('#star').raty({
+    size     : 36,
+    starOff:  '<%= asset_path('star-off.png') %>',
+    starOn : '<%= asset_path('star-on.png') %>',
+    scoreName: 'review[rate]',
+    half: false,
+  });
+</script>

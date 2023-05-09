@@ -1,50 +1,75 @@
-<h2>新規登録</h2>
+<div class='container'>
+  <div class='row pt-5'>
+    <div class="col-sm-12 col-md-11 col-lg-10 px-sm-0 mx-auto tr-color p-4">
+      <div class="ml-2">
+        <h4>新規会員登録</h4>
+      </div>
+        <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+          <%= render "public/shared/error_messages", resource: resource %>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "public/shared/error_messages", resource: resource %>
+          <div class="form_group ml-2">
+            <table class="table table-borderless">
+              <tbody>
+                <tr>
+                  <td><%= f.label :'ユーザーネーム' %></td>
+                  <td></td>
+                  <td><%= f.text_field :user_name, autofocus: true, autocomplete: "user_name" %></td>
+                </tr>
 
+                <tr>
+                  <td><%= f.label :'性別' %></td>
+                  <td></td>
+                  <td><%= f.radio_button :gender, 0 %>
+                      <%= f.label :gender, "男性" %>
+                      <%= f.radio_button :gender, 1 %>
+                      <%= f.label :gender, "女性" %>
+                      <%= f.radio_button :gender, 2 %>
+                      <%= f.label :gender, "無回答" %></td>
+                </tr>
 
-  <div class="field">
-    <%= f.label :'ユーザーネーム' %><br />
-    <%= f.text_field :user_name, autofocus: true, autocomplete: "user_name" %>
+                <tr>
+                  <td><%= f.label :'メールアドレス' %></td>
+                  <td></td>
+                  <td><%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "sample@example.com" %></td>
+                </tr>
+
+                <tr>
+                  <td><%= f.label :'生年月日' %></td>
+                  <td></td>
+                  <td><%= f.date_select :birth_date, use_month_numbers: true,start_year: 1930, end_year: (Time.now.year - 10), default: Date.new(1999, 1, 1) %></td>
+                </tr>
+
+                <tr>
+                  <td><%= f.label :'パスワード' %>
+                      <% if @minimum_password_length %>
+                      <em>(<%= @minimum_password_length %> 文字以上)</em>
+                      <% end %></td>
+                  <td></td>
+                  <td><%= f.password_field :password, autocomplete: "new-password" %></td>
+                </tr>
+
+                <tr>
+                  <td><%= f.label :'パスワード（確認用）' %></td>
+                  <td></td>
+                  <td><%= f.password_field :password_confirmation, autocomplete: "new-password" %></td>
+                </tr>
+
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td><%= f.submit "新規登録" %></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        <% end %>
+        <div class="py-1 mx-4">
+          <h6 class="bg-light">既に登録済みの方</h6>
+        </div>
+        <div class="px-5">
+          <small><%= link_to "こちら", new_user_session_path %>からログインしてください</small>
+        </div>
+
+    </div>
   </div>
-
-   <div class="field">
-    <%= f.label :'性別' %><br />
-    <%= f.radio_button :gender, 0 %>
-    <%= f.label :gender, "男性" %>
-    <%= f.radio_button :gender, 1 %>
-    <%= f.label :gender, "女性" %>
-    <%= f.radio_button :gender, 2 %>
-    <%= f.label :gender, "不特定" %>
-   </div>
-
-  <div class="field">
-    <%= f.label :'メールアドレス' %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "sample@example.com" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :'生年月日' %><br />
-    <%= f.date_select :birth_date, use_month_numbers: true,start_year: 1930, end_year: (Time.now.year - 10), default: Date.new(1999, 1, 1) %>
-  </div>
-
-  <div class="field">
-    <%= f.label :'パスワード' %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> 文字以上)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :'パスワード（確認用）' %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "新規登録" %>
-  </div>
-<% end %>
-
-<%= render "public/shared/links" %>
+</div>

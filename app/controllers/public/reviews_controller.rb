@@ -17,21 +17,27 @@ class Public::ReviewsController < ApplicationController
     unless @book
       @book = Book.create!(book_params)
     end
-    #ユーザーidを入れたままレビューを作成
-    @review = current_user.reviews.build(review_params)
-    @review.book_id = @book.id
-    if @review.save
-      flash[:notice] = "success"
-      redirect_to @review
-    else
-      flash.now[:alert] = "failed"
-      render :new
-    end
+      if current_user.reviews.exists?(book_id: @book.id)
+        flash[:alert] = "既にレビューを投稿しています。"
+        redirect_to @book
+      else
+        #ユーザーidを入れたままレビューを作成
+        @review = current_user.reviews.build(review_params)
+        @review.book_id = @book.id
+        if @review.save
+          flash[:notice] = "success"
+          redirect_to @review
+        else
+          flash[:alert] = "エラーが発生しました。"
+          render :new
+        end
+      end
   end
 
   def show
     @review = Review.find(params[:id])
     @book = @review.book
+    @user = User.find(@review.user.id)
   end
 
   def edit
