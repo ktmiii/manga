@@ -31,6 +31,27 @@ class User < ApplicationRecord
 
   validates :user_name, presence: true, uniqueness: true, length: { minimum: 2, maximum: 10 }
 
+  enum gender: { male: 0, female: 1, no_answer:2 }
 
+
+  validates :birth_date, presence: true
+
+  def age_group
+    age = Time.zone.today.year - birth_date.year
+    case age
+    when 10..19
+      '10代'
+    when 20..29
+      '20代'
+    when 30..39
+      '30代'
+    when 40..49
+      '40代'
+    when 50..59
+      '50代'
+    else
+      '60代以上'
+    end
+  end
 
 end

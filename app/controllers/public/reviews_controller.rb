@@ -37,7 +37,6 @@ class Public::ReviewsController < ApplicationController
   def show
     @review = Review.find(params[:id])
     @book = @review.book
-    @user = User.find(@review.user.id)
   end
 
   def edit

@@ -7,3 +7,10 @@ ja:
         email: メールアドレス
         password: パスワード
         user_name: ユーザーネーム
+
+  enums:
+    user:
+      gender:
+        male: 男性
+        female: 女性
+        no_answer: 無回答

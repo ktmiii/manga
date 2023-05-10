@@ -2,6 +2,7 @@ class Public::UsersController < ApplicationController
   before_action :authenticate_user!
   def show
     @user = User.find(params[:id])
+    @age_group = @user.age_group
   end
 
   def edit
