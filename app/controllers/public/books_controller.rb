@@ -1,5 +1,17 @@
 class Public::BooksController < ApplicationController
 
+  def show
+    
+    @book = Book.find_by(isbn: params.dig(:book, :isbn))
+    unless @book
+      @book = Book.new(book_params)
+    end
+      @review = @book.review
+    else
+      
+    end
+  end
+
   def index
     #楽天ブックスからデータを取得してくる
     #presentは空文字とnillをfalseにする
@@ -26,18 +38,8 @@ class Public::BooksController < ApplicationController
     end
   end
 
-  def show
-    #idが0だったらパラメータの情報を入れて、あったら探して持ってくる
-    if params[:id] == "0"
-      @book = Book.new(book_params)
-    else
-      @book = Book.find(params[:id])
-    end
-    @review = Review.new
-  end
-  
   private
-  
+
   def book_params
     params.require(:book).permit(:title, :isbn, :author, :image_url, :item_url)
   end

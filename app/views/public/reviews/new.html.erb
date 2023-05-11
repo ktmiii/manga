@@ -12,13 +12,13 @@
      <strong><%= @book.title %></strong>
    </div>
   </div>
-  <%= form_with model: @review, local: true do |f| %>
+  <%= form_with model: @review, url: confirm_reviews_path, local: true do |f| %>
     <div class="form-group">
       <strong>評価する</strong><hr>
        <h9>☆の部分をクリックして、5点満点で評価してください。</h9>
         <div class="form-group row pt-2 pb-4" id="star">
           <%= f.label :rate,'評価 ', class:'col-md-3 col-form-label' %>
-          <%= f.hidden_field :star, id: :review_star %>
+          <%= f.hidden_field :rate, id: :review_star %>
           <!--star がポイント(jsを呼ぶ)-->
         </div>
       <strong>レビューを記入する</strong><hr>
@@ -35,7 +35,7 @@
             <%= ff.hidden_field :image_url %>
             <%= ff.hidden_field :item_url %>
           <% end %>
-          <%= f.submit "投稿する" %>
+          <%= f.submit "入力内容を確認する", name: "confirm_button" %>
     </div>
         <% end %>
     

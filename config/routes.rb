@@ -17,11 +17,12 @@ Rails.application.routes.draw do
 
     get 'users/withdraw' => 'users#withdraw'
     patch 'users/unsubscribe' => 'users#unsubscribe'
-
+    post 'reviews/confirm' => 'reviews#confirm'
+    get 'reviews/complete' => 'reviews#complete'
 
     resources :users, only: [:show, :edit, :update]
     resources :books, only: [:index, :show]
-    resources :reviews
+    resources :reviews, only: [:new, :create, :index, :destroy]
   end
 
   namespace :admin do

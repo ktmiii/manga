@@ -14,3 +14,6 @@
  *= require_self
  */
 
+.rounded-pill{
+    background-color: #fa8072;	
+}
