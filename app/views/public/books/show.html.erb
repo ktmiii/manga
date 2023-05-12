@@ -1,20 +1,20 @@
+<% if flash[:alert] %>
+  <div class="alert alert-danger">
+    <%= flash[:alert] %>
+  </div>
+<% end %>
 <div class='row'>
-  <% if flash[:alert] %>
-    <div class="alert alert-danger">
-     <%= flash[:alert] %>
-    </div>
-  <% end %>
   <div class="col-sm-4 manga info-top">
     <%= link_to(@book.item_url) do %>
     <div class="pb-3 image">
       <%= image_tag @book.image_url + "?_ex=200x200", class:"mx-3 d-block" %>
     </div>
     <% end %>
-    <div><small class="pl-2 pr-2 mb-2 rounded-pill">著者</small>
+    <div class="text-left"><small class="pl-2 pr-2 mb-2 rounded-pill">著者</small>
       <small><%= @book.author %></small>
     </div>
     <%= link_to(@book.item_url) do %>
-    <div class="book-info">
+    <div class="book-info pb-2 text-left">
       <strong><%= @book.title %></strong>
     </div>
     <% end %>
@@ -25,12 +25,18 @@
    <%= f.hidden_field :author %>
    <%= f.hidden_field :image_url %>
    <%= f.hidden_field :item_url %>
-   <%= f.submit "レビューする" %>
+   <div class="mx-3">
+    <%= f.submit "レビューする", class: "btn btn-warning" %>
+   </div>
  <% end %>
   </div>
   <div class="col-sm-8">
-     <% @reviews.each do |review| %>
-      <%= render "public/reviews/show", review: @review %>
+     <% if @reviews.blank? %>
+         最初の投稿をしてみましょう！
+     <% else %>
+         <% @reviews.each do |review| %>
+          <%= render "public/reviews/show", review: review %>
+         <% end %>
      <% end %>
   </div>
 </div>

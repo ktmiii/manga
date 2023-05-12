@@ -15,5 +15,18 @@
  */
 
 .rounded-pill{
-    background-color: #fa8072;	
+  background-color: #ee827d;
 }
+
+.review-color{
+  background-color: #F5D01F
+}
+
+.btn-warning{
+    background-color: #F5D01F
+}
+
+.btn-info{
+    background-color: #c0c0c0
+}
+

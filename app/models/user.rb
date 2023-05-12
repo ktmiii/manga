@@ -3,7 +3,6 @@ class User < ApplicationRecord
   has_many :favorite_books
   has_many :books, through: :favorite_books, source: :book
   has_many :reviews, dependent: :destroy
-  has_many :review_comments, dependent: :destroy
   has_many :review_likes, dependent: :destroy
 
   def favorite_books(book)

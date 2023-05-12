@@ -1,19 +1,33 @@
 <% @books.each do |book| %>
-  <ul>
-    <li><%= book.title %></li>
-    <li><%= image_tag book.image_url + "?_ex=50x50" %></li>
-    <li><%= link_to "商品URL", book.item_url %></li>
-    <li>
-      <!--showに持っていく過程でレコード済みの場合はid、それ以外は0をidに代入-->
-      <%= form_with model: book, url: book_path(book.id || 0), method: :get, local: true do |f| %>
-        <%= f.hidden_field :isbn %>
-        <%= f.hidden_field :title %>
-        <%= f.hidden_field :author %>
-        <%= f.hidden_field :image_url %>
-        <%= f.hidden_field :item_url %>
-        <%= f.submit "詳細" %>
-      <% end %>
-    </li>
-  </ul>
+  <div class="row">
+    <div class="col-4">
+      <div>
+          <%= image_tag book.image_url + "?_ex=100x100" %>
+      </div>
+      <div>
+        <% if @reviews.exists? %>
+          <%= book.reviews.count %>件のレビュー
+        <% else %>
+          0件のレビュー
+        <% end %>
+      </div>
+    </div>
+    <div class="col-8">
+        <strong class="text-dark"><%= book.title %></strong>
+      <p id="star-rate-<%= @review.id %>"></p>
+      <%= render 'public/books/rate_avg', review: @review, reviews: @reviews, book: @book %>
+      <div>
+        <!--showに持っていく過程でレコード済みの場合はid、それ以外は0をidに代入-->
+        <%= form_with model: book, url: book_path(book.id || 0), method: :get, local: true do |f| %>
+          <%= f.hidden_field :isbn %>
+          <%= f.hidden_field :title %>
+          <%= f.hidden_field :author %>
+          <%= f.hidden_field :image_url %>
+          <%= f.hidden_field :item_url %>
+          <%= f.submit "詳細" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
   <hr>
 <% end %>

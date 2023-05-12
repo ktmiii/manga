@@ -5,15 +5,45 @@
   </h4>
 </div>
 <div>投稿プレビュー</div>
-<div>
-  <%= render "public/reviews/show", review: @review %>
+<div class="row border rounded c enter-block py-4 mx-2">
+  <div class="col-6">
+    <div class="row">
+      <div class="col-4">
+          <%= image_tag @book.image_url + "?_ex=100x100" %>
+      </div>
+      <div class="col-8">
+          <strong class="text-dark"><%= @book.title %></strong>
+      </div>
+    </div>
+  </div>
+  <div class="col-6">
+    <%= render "public/reviews/show", review: @review %>
+  </div>
 </div>
 <div>
-  一度投稿したレビューは後から変更することができません
-  送信前に評価およびレビューをもう一度ご確認ください<br>
+  <P class="note text-center">一度投稿したレビューは後から<span class="marker">変更することができません</span><br>
+    送信前に評価およびレビューをもう一度ご確認ください</p>
 </div>
-<div class="row">
-  <div class="col"><%= link_to "戻って修正する", new_review_path %></div>
-  
+<%= form_with(model: @review, url: {action: :create}, local: true) do |f| %>
+ <div class="row justify-content-center">
+  <%= f.hidden_field :rate %>
+  <%= f.hidden_field :content %>
+
+    <%= fields_for @book do |ff| %>
+      <%= ff.hidden_field :isbn %>
+      <%= ff.hidden_field :title %>
+      <%= ff.hidden_field :author %>
+      <%= ff.hidden_field :image_url %>
+      <%= ff.hidden_field :item_url %>
+    <% end %>
   <div class="col"></div>
-</div>
+  <div class="col">
+    <%= link_to :back do %>
+      <span class="btn btn-info text-dark d-flex justify-content-center">戻って修正する</span>
+    <% end %>
+  </div>
+  <div class="col"><%= f.submit '投稿する', class: "btn btn-warning d-flex justify-content-center mx-3" %></div>
+ </div>
+ <div class="col"></div>
+<% end %>
+

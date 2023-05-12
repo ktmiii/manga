@@ -1,14 +1,22 @@
 class Public::ReviewsController < ApplicationController
 
   def index
+    @reviews = Review.all
   end
 
   def new
     @book = Book.find_by(isbn: params.dig(:book, :isbn))
-    unless @book
+    if @book.nil?
       @book = Book.new(book_params)
+    elsif current_user.reviews.exists?(book_id: @book.id)
+      flash[:alert] = "既にレビューを投稿しています。"
+      redirect_to book_path(@book.id, {book: {isbn: @book.isbn}}) and return
     end
-    @review = Review.new
+    if session[:content].present? && session[:rate].present?
+       @review = Review.new(content: session[:content], rate: session[:rate])
+    else
+       @review = Review.new
+    end
     @confirm = false
   end
 
@@ -19,33 +27,32 @@ class Public::ReviewsController < ApplicationController
       @book = Book.new(book_params)
     end
     @review = current_user.reviews.build(review_params)
-    @review.book_id = @book.id
-    render :new if @review.invalid?
+    render :new if @review.content.blank? || @review.rate.blank?
+    session[:content] = @review.content
+    session[:rate] = @review.rate
   end
 
   def create
     @book = Book.find_by(isbn: params.dig(:book, :isbn))
     unless @book
-      @book = Book.create!(book_params)
+      @book = Book.new(book_params)
+      @book.save # Bookオブジェクトを新規作成して保存する
     end
-      if current_user.reviews.exists?(book_id: @book.id)
-        flash[:alert] = "既にレビューを投稿しています。"
-        redirect_to @book
-      else
         #ユーザーidを入れたままレビューを作成
-        @review = current_user.reviews.build(review_params)
-        @review.book_id = @book.id
-        if params[:confirm_button] # 「入力内容を確認する」ボタンが押された場合
-          @confirm = true
-          render :new if @review.invalid?
-        elsif @review.save
-          flash[:notice] = "success"
-          redirect_to @review
-        else
-          flash[:alert] = "エラーが発生しました。"
-          render :new
-        end
+      @review = current_user.reviews.build(review_params)
+      @review.book_id = @book.id
+      if params[:confirm_button] # 「入力内容を確認する」ボタンが押された場合
+        @confirm = true
+        render :new if @review.invalid?
+      elsif @review.save
+        flash[:notice] = "success"
+        redirect_to reviews_complete_path
+      else
+        flash[:alert] = "エラーが発生しました。"
+        render :new
       end
+    session.delete(:content)
+    session.delete(:rate)
   end
 
   def complete
@@ -66,3 +73,4 @@ class Public::ReviewsController < ApplicationController
     params.require(:review).permit(:user_id, :book_id, :content, :rate)
   end
 end
+

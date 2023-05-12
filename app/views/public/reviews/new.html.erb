@@ -1,4 +1,4 @@
-<div class="ml-2 mb-5 pl-3 bg-warning">
+<div class="ml-2 mb-5 pl-3 review-color">
   <h4>
     <i class="fas fa-comment"></i>
     レビュー投稿フォーム
@@ -12,7 +12,7 @@
      <strong><%= @book.title %></strong>
    </div>
   </div>
-  <%= form_with model: @review, url: confirm_reviews_path, local: true do |f| %>
+  <%= form_with model: @review, url: reviews_confirm_path, local: true do |f| %>
     <div class="form-group">
       <strong>評価する</strong><hr>
        <h9>☆の部分をクリックして、5点満点で評価してください。</h9>
@@ -26,7 +26,7 @@
         <div class="form-group row pt-2">
           <%= f.text_area :content, class: "form-control", style: "height: 150px;" %>
         </div>
-  
+
           <!--親子フォーム（一つのボタンで二種類のデータを送る）-->
           <%= fields_for @book do |ff| %>
             <%= ff.hidden_field :isbn %>
@@ -35,10 +35,12 @@
             <%= ff.hidden_field :image_url %>
             <%= ff.hidden_field :item_url %>
           <% end %>
-          <%= f.submit "入力内容を確認する", name: "confirm_button" %>
+            <div class="text-center">
+              <%= f.submit "入力内容を確認する", class: "btn btn-warning" %>
+            </div>
     </div>
         <% end %>
-    
+
 
 
  <!-- 評価javascript -->
@@ -49,5 +51,6 @@
     starOn : '<%= asset_path('star-on.png') %>',
     scoreName: 'review[rate]',
     half: false,
+    score: <%= @review.rate ? @review.rate : 0.0 %>
   });
 </script>

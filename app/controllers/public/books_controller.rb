@@ -1,17 +1,5 @@
 class Public::BooksController < ApplicationController
 
-  def show
-    
-    @book = Book.find_by(isbn: params.dig(:book, :isbn))
-    unless @book
-      @book = Book.new(book_params)
-    end
-      @review = @book.review
-    else
-      
-    end
-  end
-
   def index
     #楽天ブックスからデータを取得してくる
     #presentは空文字とnillをfalseにする
@@ -31,11 +19,25 @@ class Public::BooksController < ApplicationController
           #gsubは置き換え（第一引数の文字を第二引数に置き換える）
           book.image_url = data.medium_image_url.gsub('?_ex=120x120', '')
           book.item_url = data.item_url
+          book.save
         end
         #戻り値を設定することで最後の行がbook.item_urlじゃなくなる
         book
       end
     end
+    @review = Review.new
+    @reviews = Review.all
+  end
+
+  def show
+    #idが0だったらパラメータの情報を入れて、あったら探して持ってくる
+    if params[:id] == "0"
+      @book = Book.new(book_params)
+    else
+      @book = Book.find(params[:id])
+    end
+    @review = Review.new
+    @reviews = @book.reviews
   end
 
   private
