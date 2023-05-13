@@ -1,0 +1,19 @@
+<div>
+  <div>
+    <div>
+      <%= image_tag @user.get_profile_image(100,100), class: "rounded-circle" %>
+    </div>
+    <div>
+      <%= @user.reviews.count.to_f %><br>
+      <small>総レビュー数</small>
+    </div>
+  </div>
+  <div>
+    <strong><%= @user.user_name %></strong><br>
+    <%= @user.age_group %>/
+    <%= @user.gender_i18n %>
+  </div>
+  <div>
+    <%= link_to "プロフィールを編集する", edit_user_path(@user),class: "btn btn-warning"%>
+  </div>
+</div>

@@ -1,17 +1,18 @@
 <script>
-  <% if review.present? %>
-    $('#star-rate-<%= review.id %>').empty();
-    $('#star-rate-<%= review.id %>').raty({
+  <% if reviews.present? %>
+    $('#star-rate-<%= book.id %>').empty();
+    $('#star-rate-<%= book.id %>').raty({
       size: 36,
       starOff: '<%= asset_path('star-off.png') %>',
       starOn: '<%= asset_path('star-on.png') %>',
-      half: false,
+      starHalf: '<%= asset_path('star-half.png') %>',
+      half: true,
       readOnly: true,
-      score: <%= "#{review.rate.to_f.round(1)}" %>,
+      score: <%= "#{book.reviews.pluck(:rate).sum / book.reviews.count}" %>
     });
   <% else %>
-    $('#star-rate').empty();
-    $('#star-rate').raty({
+    $('#star-rate-<%= book.id %>').empty();
+    $('#star-rate-<%= book.id %>').raty({
       size: 36,
       starOff: '<%= asset_path('star-off.png') %>',
       starOn: '<%= asset_path('star-on.png') %>',

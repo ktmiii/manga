@@ -24,16 +24,18 @@ class Public::SessionsController < Devise::SessionsController
   # def configure_sign_in_params
   #   devise_parameter_sanitizer.permit(:sign_in, keys: [:attribute])
   # end
-  def reject_withdraw_user
-  @user = User.find_by(user_name: params[:user][:user_name])
+  protected
 
-    if @user && @user.valid_password?(params[:user][:password]) && @user.is_deleted
-      flash[:notice] = "退会済みのアカウントです。再度ご登録してご利用ください。"
-      redirect_to new_customer_registration_path
-    else
-      flash[:alert] = "メールアドレスまたはパスワードが違います。"
-      render :new
-    end
+  # 会員の論理削除のための記述。退会後は、同じアカウントでは利用できない。
+  def reject_user
+    @user = User.find_by(user_name: params[:user][:user_name])
+      if @user.nil? || !@user.valid_password?(params[:user][:password]) || @user.is_deleted
+        flash[:alert] = "メールアドレスまたはパスワードが違います。"
+        render :new
+      else
+        flash[:notice] = "退会済みのアカウントです。再度ご登録してご利用ください。"
+        redirect_to new_user_registration_path
+      end
   end
 
 end

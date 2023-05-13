@@ -13,7 +13,13 @@
       </div>
       <div class="col-8">
           <strong class="text-dark"><%= @book.title %></strong>
+          <p id="star-rate-<%= @book.id %>"></p>
+          <%= render 'public/books/rate_avg', reviews: @book.reviews, book: @book %>
       </div>
+      <div>
+        <p id="star-rate-<%= @book.id %>"></p>
+        <%= render 'public/books/rate_avg', reviews: @book.reviews, book: @book %>
+      <div>
     </div>
   </div>
   <div class="col-6">

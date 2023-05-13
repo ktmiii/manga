@@ -25,8 +25,6 @@ class Public::BooksController < ApplicationController
         book
       end
     end
-    @review = Review.new
-    @reviews = Review.all
   end
 
   def show
@@ -36,7 +34,6 @@ class Public::BooksController < ApplicationController
     else
       @book = Book.find(params[:id])
     end
-    @review = Review.new
     @reviews = @book.reviews
   end
 

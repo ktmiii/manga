@@ -5,6 +5,10 @@ class User < ApplicationRecord
   has_many :reviews, dependent: :destroy
   has_many :review_likes, dependent: :destroy
 
+  def active_for_authentication?
+    super && (is_deleted == false)
+  end
+
   def favorite_books(book)
     self.favorites.find_or_create_by(book_id: book.id)
   end
@@ -26,7 +30,7 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+         :recoverable, :rememberable, :validatable, :authentication_keys => [:user_name]
 
   validates :user_name, presence: true, uniqueness: true, length: { minimum: 2, maximum: 10 }
 

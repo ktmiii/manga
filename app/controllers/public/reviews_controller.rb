@@ -1,7 +1,8 @@
 class Public::ReviewsController < ApplicationController
 
   def index
-    @reviews = Review.all
+    #reviewを持った本のデータを重複しないように持ってくる
+    @books = Book.joins(:reviews).distinct
   end
 
   def new

@@ -1,0 +1,23 @@
+<h4><%= @review.user.user_name %>さんのレビュー詳細</h4>
+  <table class='table'>
+    <tr>
+      <th>作成日時</th>
+      <th><%= @review.created_at.strftime("%Y/%m/%d %H:%M:%S") %></th>
+    </tr>
+    <tr>
+      <th>ユーザーネーム</th>
+      <th><%= @review.user.user_name %></th>
+    </tr>
+    <tr>
+      <th>本のタイトル</th>
+      <th><%= @review.book.title %></th>
+    </tr>
+    <tr>
+      <th>レビュー内容</th>
+      <th><%= @review.content %></th>
+    </tr>
+    <tr>
+      <th></th>
+      <th><%= link_to '削除する', admin_review_path(@review), method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger" %></th>
+    </tr>
+  </table>

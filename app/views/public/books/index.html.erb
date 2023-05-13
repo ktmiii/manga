@@ -2,10 +2,12 @@
   <div class="row">
     <div class="col-4">
       <div>
+        <%= link_to book_path(book) do %>
           <%= image_tag book.image_url + "?_ex=100x100" %>
+        <% end %>
       </div>
       <div>
-        <% if @reviews.exists? %>
+        <% if book.reviews.exists? %>
           <%= book.reviews.count %>件のレビュー
         <% else %>
           0件のレビュー
@@ -13,18 +15,19 @@
       </div>
     </div>
     <div class="col-8">
+      <%= link_to book_path(book) do %>
         <strong class="text-dark"><%= book.title %></strong>
-      <p id="star-rate-<%= @review.id %>"></p>
-      <%= render 'public/books/rate_avg', review: @review, reviews: @reviews, book: @book %>
+      <% end %>
+      <p id="star-rate-<%= book.id %>"></p>
+      <%= render 'public/books/rate_avg', reviews: book.reviews, book: book %>
       <div>
-        <!--showに持っていく過程でレコード済みの場合はid、それ以外は0をidに代入-->
-        <%= form_with model: book, url: book_path(book.id || 0), method: :get, local: true do |f| %>
-          <%= f.hidden_field :isbn %>
-          <%= f.hidden_field :title %>
-          <%= f.hidden_field :author %>
-          <%= f.hidden_field :image_url %>
-          <%= f.hidden_field :item_url %>
-          <%= f.submit "詳細" %>
+        <% if book.reviews.present? %>
+          <%= (book.reviews.pluck(:rate).sum / book.reviews.count.to_f).round(1) %>
+        <% end %>
+      </div>
+      <div>
+        <%= link_to book_path(book), class:"text-dark" do %>
+          詳細
         <% end %>
       </div>
     </div>

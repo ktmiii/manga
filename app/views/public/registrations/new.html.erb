@@ -1,3 +1,12 @@
+<% if flash[:notice] %>
+  <div class="alert alert-danger">
+    <%= flash[:notice] %>
+  </div>
+<% else %>
+  <div class="alert alert-danger">
+    <%= flash[:alert] %>
+  </div>
+<% end %>
   <div class="ml-2">
     <h4>新規会員登録</h4>
   </div>
@@ -34,6 +43,7 @@
               <td><%= f.label :'生年月日' %></td>
               <td></td>
               <td><%= f.date_select :birth_date, use_month_numbers: true,start_year: 1930, end_year: (Time.now.year - 10), default: Date.new(1999, 1, 1) %></td>
+              <td><small>※年齢は後で変更することはできません。</small></td>
             </tr>
 
             <tr>
