@@ -1,6 +1,6 @@
 require "test_helper"
 
-class FavoriteBookTest < ActiveSupport::TestCase
+class Public::BookmarksControllerTest < ActionDispatch::IntegrationTest
   # test "the truth" do
   #   assert true
   # end

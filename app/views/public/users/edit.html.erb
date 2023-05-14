@@ -2,11 +2,21 @@
  <%= form_with model:@user, url:user_path(@user), method: :patch, local: true do |f| %>
   <table class='table'>
     <tr>
-      <th><%= f.label :'ユーザーネーム' %></th>
+      <th></th>
+      <th class="text-center"><%= image_tag @user.get_profile_image(100,100), class: "rounded-circle" %><br>
+        <%= f.label :get_profile_image, "プロフィール画像を設定する", class: "image_input_btn" %>
+        <%= f.file_field :get_profile_image, class: "image_form" %>
+      </th>
+      <th></th>
+    </tr>
+    <tr>
+      <th class="pl-4"><%= f.label :'ユーザーネーム' %></th>
+      <th></th>
       <th><%= f.text_field :user_name %></th>
     </tr>
     <tr>
-      <th><%= f.label :'性別' %></th>
+      <th class="pl-4"><%= f.label :'性別' %></th>
+      <th></th>
       <th><%= f.radio_button :gender, User.genders.key(0) %>
           <%= f.label :gender_male, User.genders_i18n[:male] %>
           <%= f.radio_button :gender, User.genders.key(1) %>
@@ -15,14 +25,18 @@
           <%= f.label :gender_no_answer, User.genders_i18n[:no_answer] %></th>
     </tr>
     <tr>
-      <th><%= f.label :'メールアドレス' %></th>
+      <th class="pl-4"><%= f.label :'メールアドレス' %></th>
+      <th></th>
       <th><%= f.email_field :email %></th>
     </tr>
     </tr>
     <tr>
       <th></th>
-      <th><%= f.submit '変更を保存',class: 'btn btn-success' %></th>
-      <th><%= link_to "退会する", users_withdraw_path, class:"btn btn-danger my-2 offset-sm-1" %></th>
+      <th></th>
+      <th>
+        <%= f.submit '変更を保存',class: 'btn btn-success' %>
+        <%= link_to "退会する", users_withdraw_path, class:"btn btn-danger my-2 offset-sm-1" %>
+      </th>
     </tr>
   </table>
  <% end %>

@@ -1,6 +1,6 @@
 class User < ApplicationRecord
 
-  has_many :favorite_books
+  has_many :bookmarks, dependent: :destroy
   has_many :books, through: :favorite_books, source: :book
   has_many :reviews, dependent: :destroy
   has_many :review_likes, dependent: :destroy
@@ -9,11 +9,11 @@ class User < ApplicationRecord
     super && (is_deleted == false)
   end
 
-  def favorite_books(book)
+  def bookmarks(book)
     self.favorites.find_or_create_by(book_id: book.id)
   end
 
-  def unfavorite_books(book)
+  def bookmarks(book)
     favorite = self.favorites.find_by(book_id: book.id)
     favorite.destroy if favorite
   end
@@ -33,6 +33,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable, :authentication_keys => [:user_name]
 
   validates :user_name, presence: true, uniqueness: true, length: { minimum: 2, maximum: 10 }
+  validate :verify_file_type
 
   enum gender: { male: 0, female: 1, no_answer:2 }
 
@@ -55,6 +56,14 @@ class User < ApplicationRecord
     else
       '60代以上'
     end
+  end
+
+  private
+  def verify_file_type
+    return unless profile_image.attached?  # ②
+
+    allowed_file_types = %w[image/jpg image/jpeg image/gif image/png]  # ③
+    errors.add(:profile_image, 'only jpg, jpeg, gif, png') unless allowed_file_types.include?(profile_image.blob.content_type)  # ④
   end
 
 end

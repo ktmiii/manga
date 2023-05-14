@@ -29,4 +29,22 @@
 .btn-info{
     background-color: #c0c0c0
 }
+.image_input_btn{
+        display: block;
+        background-color: white;
+        width: 250px;
+        height: 30px;
+        margin-top: 10px;
+        margin-left: 10px;
+        border-radius: 5px;
+        padding-top: 2px;
+        color: #27acd9;
+        text-decoration: none;
+        text-align: center;
+        border: 2px solid #27acd9;
+      	box-shadow: 4px 4px #27acd9;
+      }
 
+      .image_form{
+        display: none;
+      }

@@ -4,8 +4,7 @@
       <%= image_tag @user.get_profile_image(100,100), class: "rounded-circle" %>
     </div>
     <div>
-      <%= @user.reviews.count.to_f %><br>
-      <small>総レビュー数</small>
+      <small>総レビュー数</small><%= @user.reviews.count.to_i %>
     </div>
   </div>
   <div>

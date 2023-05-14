@@ -23,6 +23,10 @@ Rails.application.routes.draw do
     resources :users, only: [:show, :edit, :update]
     resources :books, only: [:index, :show]
     resources :reviews, only: [:new, :create, :index, :destroy]
+
+    resources :books, except: [:index] do
+      resource :bookmarks, only: [:create, :destroy]
+    end
   end
 
   namespace :admin do
