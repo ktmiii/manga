@@ -22,7 +22,9 @@ Rails.application.routes.draw do
 
     resources :users, only: [:show, :edit, :update]
     resources :books, only: [:index, :show]
-    resources :reviews, only: [:new, :create, :index, :destroy]
+    resources :reviews, only: [:new, :create, :index, :destroy] do
+      resource :review_likes, only: [:create, :destroy]
+    end
 
     resources :books, except: [:index] do
       resource :bookmarks, only: [:create, :destroy]
