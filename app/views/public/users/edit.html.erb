@@ -3,9 +3,9 @@
   <table class='table'>
     <tr>
       <th></th>
-      <th class="text-center"><%= image_tag @user.get_profile_image(100,100), class: "rounded-circle" %><br>
-        <%= f.label :get_profile_image, "プロフィール画像を設定する", class: "image_input_btn" %>
-        <%= f.file_field :get_profile_image, class: "image_form" %>
+      <th class="text-center"><%= image_tag @user.get_profile_image(100,100), size: "100x100", class: "rounded-circle", id: "imageThumb" %><br>
+        <%= f.label :profile_image, "プロフィール画像を設定する", class: "image_input_btn mt-2", for: "imageField", style: 'margin:auto;' %>
+        <%= f.file_field :profile_image, class: "image_form", id: "imageField" %>
       </th>
       <th></th>
     </tr>
@@ -40,3 +40,16 @@
     </tr>
   </table>
  <% end %>
+
+ <script>
+   $('#imageField').on('change', (e) => {
+     const input = e.target
+     if (input.files && input.files[0]) {
+       const reader = new FileReader()
+       reader.onload = (ee) => {
+         $('#imageThumb').attr('src', ee.target.result)
+       }
+       reader.readAsDataURL(input.files[0])
+     }
+   })
+ </script>

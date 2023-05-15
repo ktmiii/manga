@@ -1,12 +1,9 @@
-<div>
+<div class="row">
  <div>
   <div>
-    <div>
-      <%= image_tag @user.get_profile_image(100,100), class: "rounded-circle" %>
-    </div>
-    <div>
-      <small>総レビュー数</small><%= @user.reviews.count.to_i %>
-    </div>
+    <%= image_tag @user.get_profile_image(100,100), class: "rounded-circle" %>
+    <small>総レビュー数</small><%= @user.reviews.count.to_i %>
+  </div>
   </div>
   <div>
     <strong><%= @user.user_name %></strong><br>
@@ -20,49 +17,4 @@
   </div>
  </div>
  <div>
-    <table>
-      <caption>ブックマーク一覧</caption>
-      <tbody>
-        <% @bookmarks.each do |bookmark| %>
-          <tr>
-            <td>
-              <%= link_to book_path(bookmark.book) do %>
-                <%= image_tag bookmark.book.image_url + "?_ex=200x200", class:"mx-3 d-block" %>
-              <% end %>
-            </td>
-            <td>
-              <%= link_to book_path(bookmark.book) do %>
-                <%= bookmark.book.title %>
-              <% end %>
-            </td>
-            <td><%= bookmark.book.author %></td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
- </div>
- <div>
-   <table>
-      <caption>レビューお気に入り一覧</caption>
-      <tbody>
-        <% @review_likes.each do |review_like| %>
-          <tr>
-            <td>
-              <%= link_to(review_like.review.user) do %>
-                <strong><%= review_like.review.user.user_name %></strong>
-              <% end %>
-                <strong>さん</strong><br>
-              <%= review_like.review.user.age_group %>/
-              <%= review_like.review.user.gender_i18n %>
-            </td>
-            <td>
-              <%= link_to book_path(review_like.review.book) do %>
-                <%= review_like.review.content %>
-              <% end %>
-            </td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
- </div>
-</div>
+   

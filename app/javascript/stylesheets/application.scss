@@ -1,3 +1,9 @@
 @use '~bootstrap/scss/bootstrap';
 @use '~@fortawesome/fontawesome-free/scss/fontawesome';
+$fa-font-path: "~@fortawesome/fontawesome-free/webfonts";
+@import "~@fortawesome/fontawesome-free/scss/solid";
 
+.fa_icon {
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+}

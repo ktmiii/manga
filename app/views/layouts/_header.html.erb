@@ -11,8 +11,8 @@
             <% if user_signed_in? %>
               <div class="mr-5 mt-2">
                 <%= form_with url: books_path, method: :get, local: true do |f| %>
-                  <%= f.text_field :search %>
-                  <%= f.submit "search" %>
+                  <%= f.text_field :search, placeholder: "漫画タイトルを検索" %>
+                  <%= f.submit "\uF002", class: 'fa_icon' %>
                 <% end %>
               </div>
              <li>
@@ -56,9 +56,12 @@
 
             <!--ログインしていないとき-->
             <% else %>
-             <div class="mr-5 mt-2">
-              <i class="fas fa-smile-wink fa-spin"></i> ようこそ、<strong>ゲスト</strong> さん！<i class="fas fa-smile-wink fa-spin"></i>
-             </div>
+              <div class="mr-5 mt-2">
+                <%= form_with url: books_path, method: :get, local: true do |f| %>
+                  <%= f.text_field :search, placeholder: "漫画タイトルを検索" %>
+                  <%= f.submit "\uF002", class: 'fa_icon' %>
+                <% end %>
+              </div>
              <li>
                <%= link_to root_path, class: 'nav-link text-dark' do %>
                 <i class="fas fa-smile-wink fa-spin"></i>トップ

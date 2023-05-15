@@ -2,7 +2,7 @@ class Public::ReviewsController < ApplicationController
 
   def index
     #reviewを持った本のデータを重複しないように持ってくる
-    @books = Book.joins(:reviews).distinct
+    @books = Book.joins(:reviews).distinct.page(params[:page]).per(10)
   end
 
   def new

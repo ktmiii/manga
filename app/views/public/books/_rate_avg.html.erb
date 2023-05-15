@@ -8,7 +8,8 @@
       starHalf: '<%= asset_path('star-half.png') %>',
       half: true,
       readOnly: true,
-      score: <%= "#{book.reviews.pluck(:rate).sum / book.reviews.count}" %>
+      score: <%= "#{book.reviews.pluck(:rate).sum / book.reviews.count}" %>,
+      round: { down: .25 }
     });
   <% else %>
     $('#star-rate-<%= book.id %>').empty();

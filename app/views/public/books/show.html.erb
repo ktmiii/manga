@@ -3,30 +3,28 @@
     <%= flash[:alert] %>
   </div>
 <% end %>
-<div class='row'>
+<div class='row mt-3'>
   <div class="col-sm-4 manga info-top">
     <%= link_to(@book.item_url) do %>
-    <div class="pb-3 image">
-      <%= image_tag @book.image_url + "?_ex=200x200", class:"mx-3 d-block" %>
-    </div>
+      <%= image_tag @book.image_url + "?_ex=220x220", style: "height:220px;" %>
     <% end %>
-    <div class="text-left"><small class="pl-2 pr-2 mb-2 rounded-pill">著者</small>
+    <div class="text-left pt-1"><small class="pl-2 pr-2 mb-2 rounded-pill">著者</small>
       <small><%= @book.author %></small>
     </div>
     <%= link_to(@book.item_url) do %>
-    <div class="book-info pb-2 text-left">
       <strong><%= @book.title %></strong>
-    </div>
-    <div>
-      <p id="star-rate-<%= @book.id %>"></p>
+    <% end %>
+    <div class="pb-2 pt-1">
+      <p class="d-inline" id="star-rate-<%= @book.id %>"></p>
       <%= render 'public/books/rate_avg', reviews: @book.reviews, book: @book %>
-      <p>
+      <p class="d-inline">
         <% if @book.reviews.present? %>
-          <%= (@book.reviews.pluck(:rate).sum / @book.reviews.count.to_f).round(1) %>
+          <strong>
+            <%= (@book.reviews.pluck(:rate).sum / @book.reviews.count.to_f).round(1) %>
+          </strong>
         <% end %>
       </p>
     </div>
-    <% end %>
 
  <%= form_with model: @book, url: new_review_path, method: :get, local: true do |f| %>
    <%= f.hidden_field :isbn %>
@@ -55,27 +53,27 @@
                   <strong>さん</strong><br>
                 <%= review.user.age_group %>/
                 <%= review.user.gender_i18n %><br>
-                <p>評価 :<%= review.rate %>点</p>
+                評価 :<%= review.rate %>点
                 <p id="star-rate<%= review.id %>"></p>
-                <div>
-                  <%= review.content %><br>
-                  <small><%= review.created_at&.strftime("%Y年%m月%d日") %></small>
-                  <% if review.review_liked_by?(current_user) %>
-                    <p>
-                      <%= link_to review_review_likes_path(review), method: :delete do %>
-                        <i class="fas fa-heart"></i><%= review.review_likes.count %> いいね
-                      <% end %>
-                    </p>
-                  <% else %>
-                    <p>
-                      <%= link_to review_review_likes_path(review), method: :post do %>
-                        <i class="far fa-heart"></i><%= review.review_likes.count %> いいね
-                      <% end %>
-                    </p>
-                  <% end %>
-                </div>
               </div>
-            </div>
+              <div>
+                <%= review.content %><br>
+                <small class="d-inline-block"><%= review.created_at&.strftime("%Y年%m月%d日") %></small>
+                <% if review.review_liked_by?(current_user) %>
+                  <p class="d-inline-block">
+                    <%= link_to review_review_likes_path(review), method: :delete do %>
+                      <i class="fas fa-heart"></i><%= review.review_likes.count %> いいね
+                    <% end %>
+                  </p>
+                <% else %>
+                  <p class="d-inline-block">
+                    <%= link_to review_review_likes_path(review), method: :post do %>
+                      <i class="far fa-heart"></i><%= review.review_likes.count %> いいね
+                    <% end %>
+                  </p>
+                <% end %>
+              </div>
+            </div><hr>
               <script>
                 $('#star-rate-<%= review.id %>').empty();
                  $('#star-rate<%= review.id%>').raty({
@@ -92,27 +90,4 @@
   </div>
 </div>
 
-<script>
-  <% if @reviews.present? %>
-    $('#star-rate-<%= @book.id %>').empty();
-    $('#star-rate-<%= @book.id %>').raty({
-      size: 36,
-      starOff: '<%= asset_path('star-off.png') %>',
-      starOn: '<%= asset_path('star-on.png') %>',
-      starHalf: '<%= asset_path('star-half.png') %>',
-      half: true,
-      readOnly: true,
-      score: <%= "#{@book.reviews.pluck(:rate).sum / @book.reviews.count}" %>
-    });
-  <% else %>
-    $('#star-rate-<%= @book.id %>').empty();
-    $('#star-rate-<%= @book.id %>').raty({
-      size: 36,
-      starOff: '<%= asset_path('star-off.png') %>',
-      starOn: '<%= asset_path('star-on.png') %>',
-      half: false,
-      readOnly: true,
-      score: 0
-    });
-  <% end %>
-</script>
+<%= render 'public/books/rate_avg', reviews: @reviews, book: @book %>

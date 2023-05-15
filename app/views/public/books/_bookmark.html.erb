@@ -2,12 +2,14 @@
   <p>
     <%= link_to book_bookmarks_path(book), method: :delete do %>
       <i class="fas fa-bookmark"></i>
+      <small>ブックマークを外す</small>
     <% end %>
   </p>
 <% else %>
   <p>
     <%= link_to book_bookmarks_path(book), method: :post do %>
       <i class="far fa-bookmark"></i>
+      <small>ブックマークする</small>
     <% end %>
   </p>
 <% end %>
