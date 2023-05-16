@@ -54,7 +54,7 @@
                 <%= review.user.age_group %>/
                 <%= review.user.gender_i18n %><br>
                 評価 :<%= review.rate %>点
-                <p id="star-rate<%= review.id %>"></p>
+                <p id="star-rate-<%= review.id %>"></p>
               </div>
               <div>
                 <%= review.content %><br>
@@ -64,7 +64,7 @@
             </div><hr>
               <script>
                 $('#star-rate-<%= review.id %>').empty();
-                 $('#star-rate<%= review.id%>').raty({
+                 $('#star-rate-<%= review.id%>').raty({
                         size      : 36,
                         starOff   : '<%= asset_path('star-off.png') %>',
                         starOn    : '<%= asset_path('star-on.png') %>',
