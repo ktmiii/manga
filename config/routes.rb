@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  namespace :public do
+    get 'relationships/followings'
+    get 'relationships/followers'
+  end
   devise_for :users,skip: [:passwords], controllers: {
     registrations: "public/registrations",
     sessions: 'public/sessions'
@@ -20,8 +24,11 @@ Rails.application.routes.draw do
     post 'reviews/confirm' => 'reviews#confirm'
     get 'reviews/complete' => 'reviews#complete'
 
-    resources :users, only: [:show, :edit, :update]
+
     resources :books, only: [:index, :show]
+    resources :users, only: [:show, :edit, :update] do
+      resource :relationships, only: [:create, :destroy]
+    end
     resources :reviews, only: [:new, :create, :index, :destroy] do
       resource :review_likes, only: [:create, :destroy]
     end

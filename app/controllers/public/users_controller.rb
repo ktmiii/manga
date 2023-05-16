@@ -3,8 +3,11 @@ class Public::UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @age_group = @user.age_group
+    @reviews = @user.reviews
     @bookmarks = Bookmark.where(user_id: current_user.id)
     @review_likes = ReviewLike.where(user_id: current_user.id)
+    @following_users = @user.followings
+    @followers = @user.followers
   end
 
   def edit
