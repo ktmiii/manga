@@ -1,4 +1,5 @@
 class Public::ReviewsController < ApplicationController
+  :authenticate_user!, only: [:new]
 
   def index
     #reviewを持った本のデータを重複しないように持ってくる
