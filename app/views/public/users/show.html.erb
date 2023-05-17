@@ -7,7 +7,7 @@
       <%= @user.age_group %>/
       <%= @user.gender_i18n %>
     </div>
-    <small>参考になった！合計<%= @user.review_likes.count.to_i %></small>
+    <small>参考になった！合計<%= @user.reviews.inject(0) { |sum, review| sum + review.review_likes.count } %></small>
     <div>
       <% if @user == current_user %>
         <%= link_to "プロフィールを編集する", edit_user_path(@user),class: "btn btn-warning"%>
