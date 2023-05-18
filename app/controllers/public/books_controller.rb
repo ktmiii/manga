@@ -24,9 +24,9 @@ class Public::BooksController < ApplicationController
         #戻り値を設定することで最後の行がbook.item_urlじゃなくなる
         book
       end
-      @books = Kaminari.paginate_array(@books).page(params[:page]).per(10)
+      @books = Kaminari.paginate_array(@books).page(params[:page]).per(12)
     else
-      @books = Kaminari.paginate_array([]).page(params[:page]).per(10)
+      @books = Kaminari.paginate_array([]).page(params[:page]).per(12)
     end
   end
 

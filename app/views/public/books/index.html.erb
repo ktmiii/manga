@@ -1,3 +1,6 @@
 <div class="row">
   <%= render 'public/books/index', books:@books %>
+  <div class="d-flex justify-content-center">
+    <%= paginate @books, theme: 'bootstrap-5' %>
+  </div>
 </div>

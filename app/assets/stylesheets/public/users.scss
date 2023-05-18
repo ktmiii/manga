@@ -1,3 +1,52 @@
 // Place all the styles related to the public/users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+.sidebar{
+  width: 38%;
+  float: left;
+}
+
+.main-content{
+  width: calc(62% - 15px);
+  float: right;
+}
+
+.personal .top-info {
+  width: 100%;
+}
+
+.personal .left {
+  float: left;
+  width: 100px;
+}
+
+.personal .right{
+  padding-left: 100px;
+}
+
+.col-sm-3{
+  width: 33%;
+}
+
+.personal .top-info .item .number {
+  font-size: 19px;
+  font-weight: bold;
+  display: block;
+}
+
+[class*='col-sm'] {
+  float: left;
+}
+
+.txt {
+  display: block;
+}
+
+.personal .right .item {
+  text-align: center;
+}
+
+.d-block{
+  text-align: left;
+  width: 75%;
+}

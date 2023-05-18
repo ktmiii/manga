@@ -1,26 +1,53 @@
-<div class="row mt-3">
-  <div class="col-sm-4">
-    <%= image_tag @user.get_profile_image(100,100), class: "rounded-circle" %>
-    <strong><%= @user.user_name %></strong><br>
-    <small>総レビュー数</small><%= @user.reviews.count.to_i %>
-    <div>
-      <%= @user.age_group %>/
-      <%= @user.gender_i18n %>
+<div class="clearfix pt-3">
+  <div class="personal sidebar searchable">
+    <div class="wrapper clearfix">
+      <div class="left">
+        <%= image_tag @user.get_profile_image(80,80), class: "rounded-circle" %>
+      </div>
+      <div class="right">
+        <div class="top-info clearfix d-flex align-items-center">
+          <div class="col-sm-3 item px-0">
+            <span class="number">
+              <%= @user.reviews.count.to_i %>
+            </span>
+            <span class="txt"><small>総レビュー数</small></span>
+          </div>
+          <div class="col-sm-3 item px-0">
+            <span class="number">
+              <%= @user.followings.count %>
+            </span>
+            <span class="txt"><small>フォロー</small></span>
+          </div>
+          <div class="col-sm-3 item px-0">
+            <span class="number">
+              <%= @user.followers.count %>
+            </span>
+            <span class="txt"><small>フォロワー</small></span>
+          </div>
+        </div>
+      </div>
     </div>
-    <small>参考になった！合計<%= @user.reviews.inject(0) { |sum, review| sum + review.review_likes.count } %></small>
-    <div>
-      <% if @user == current_user %>
-        <%= link_to "プロフィールを編集する", edit_user_path(@user),class: "btn btn-warning"%>
-      <% else %>
-        <% if current_user.following?(@user) %>
-          <%= link_to "フォロー中", user_relationships_path(@user.id),class: "btn btn-info px-2", method: :delete %>
+    <div class="wrapper">
+      <div>
+        <strong><%= @user.user_name %></strong><br>
+        <%= @user.age_group %>/
+        <%= @user.gender_i18n %>
+      </div>
+      <small>参考になった！合計<%= @user.reviews.inject(0) { |sum, review| sum + review.review_likes.count } %></small>
+      <div class="pt-2">
+        <% if @user == current_user %>
+          <%= link_to "プロフィールを編集する", edit_user_path(@user),class: "btn btn-warning d-block"%>
         <% else %>
-          <%= link_to "フォローする", user_relationships_path(@user.id), class:"btn btn-warning px-2", method: :post %>
+          <% if current_user.following?(@user) %>
+            <%= link_to "フォロー中", user_relationships_path(@user.id),class: "btn btn-info px-2 d-block", method: :delete %>
+          <% else %>
+            <%= link_to "フォローする", user_relationships_path(@user.id), class:"btn btn-warning px-2 d-block", method: :post %>
+          <% end %>
         <% end %>
-      <% end %>
+      </div>
     </div>
   </div>
-  <div class="col-sm-8">
+  <div class="main-content searchable">
     <ul class="nav nav-tabs" id="myTab" role="tablist">
       <li class="nav-item">
         <a class="nav-link active" id="reviews-tab" data-toggle="tab" href="#reviews" role="tab" aria-controls="reviews" aria-selected="true">投稿レビュー</a>
@@ -97,6 +124,4 @@
       </div>
     </div>
   </div>
-
-
 </div>

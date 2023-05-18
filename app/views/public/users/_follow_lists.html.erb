@@ -10,7 +10,7 @@
         <strong>さん</strong><br>
       <small>
         投稿レビュー数 :<%= user.reviews.count.to_i %>件/
-        参考になった獲得数:<%= user.review_likes.count.to_i %>
+        参考になった獲得数:<%= user.reviews.inject(0) { |sum, review| sum + review.review_likes.count } %>
       </small>
     </div>
   </div><hr>
