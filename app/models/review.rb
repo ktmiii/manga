@@ -10,6 +10,10 @@ class Review < ApplicationRecord
 
   validates :content, presence: true, length: { maximum: 800 }
 
+  scope :latest, -> {order(created_at: :desc)}
+  scope :old, -> {order(created_at: :asc)}
+  scope :rate_count, -> {order(rate: :desc)}
+
   def review_liked_by?(user)
     review_likes.where(user_id: user).exists?
   end

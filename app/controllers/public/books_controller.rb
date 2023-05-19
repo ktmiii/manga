@@ -38,6 +38,16 @@ class Public::BooksController < ApplicationController
       @book = Book.find(params[:id])
     end
     @reviews = @book.reviews
+
+    if params[:latest]
+     @reviews = @book.reviews.latest
+    elsif params[:old]
+     @reviews = @book.reviews.old
+    elsif params[:star_count]
+     @reviews = @book.reviews.rate_count
+    else
+     @reviews = @book.reviews.all
+    end
   end
 
   private

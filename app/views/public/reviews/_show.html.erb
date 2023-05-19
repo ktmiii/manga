@@ -1,26 +1,24 @@
-<div class="row">
-  <div class="col-sm-2">
-    <%= image_tag review.user.get_profile_image(100,100), class: "rounded-circle" %>
-  </div>
-  <div class="col-sm-10">
-    <%= link_to(review.user) do %>
-      <strong><%= review.user.user_name %></strong>
-    <% end %>
-      <strong>さん</strong><br>
-    <%= review.user.age_group %>/
-    <%= review.user.gender_i18n %><br>
-    <p>評価 :<%= review.rate %>点</p>
-    <p id="star-rate<%= review.id %>"></p>
-    <div>
-      <%= review.content %><br>
-      <small><%= review.created_at&.strftime("%Y年%m月%d日") %></small>
-    </div>
+<div class="col-sm-4">
+  <%= image_tag review.user.get_profile_image(100,100), class: "rounded-circle" %>
+</div>
+<div class="col-sm-8">
+  <%= link_to(review.user) do %>
+    <strong><%= review.user.user_name %></strong>
+  <% end %>
+    <strong>さん</strong><br>
+  <%= review.user.age_group %>/
+  <%= review.user.gender_i18n %><br>
+  <p>評価 :<%= review.rate %>点</p>
+  <p id="star-rate-<%= review.id %>"></p>
+  <div>
+    <%= review.content %><br>
+    <small><%= review.created_at&.strftime("%Y年%m月%d日") %></small>
   </div>
 </div>
 
 <script>
 $('#star-rate-<%= review.id %>').empty();
- $('#star-rate<%= review.id%>').raty({
+ $('#star-rate-<%= review.id%>').raty({
         size      : 36,
         starOff   : '<%= asset_path('star-off.png') %>',
         starOn    : '<%= asset_path('star-on.png') %>',
