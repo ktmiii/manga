@@ -44,7 +44,9 @@
      |<%= link_to '評価の高い順', book_path(star_count: "true") %>
     </p>
      <% if @reviews.blank? %>
-         最初の投稿をしてみましょう！
+       <div class="text-center">
+         <%= image_tag 'no-review.png', size: '260x450' %>
+       </div>
      <% else %>
          <% @reviews.each do |review| %>
             <div class="row">

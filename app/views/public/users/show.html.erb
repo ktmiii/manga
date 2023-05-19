@@ -64,7 +64,12 @@
     </ul>
     <div class="" id="myTabContent">
       <div class="tab-pane fade show active" id="reviews" role="tabpanel" aria-labelledby="reviews-tab">
-        <% @reviews.each do |review| %>
+        <% if @reviews.blank? %>
+         <div class="text-center">
+           <%= image_tag 'no-review.png', size: '230x420' %>
+         </div>
+        <% else %>
+          <% @reviews.each do |review| %>
             <div class="row pt-3">
               <div class="col-sm-2">
                 <%= link_to book_path(review.book), class: 'd-block text-center', style: "height:100px;" do %>
@@ -95,31 +100,50 @@
                         score: <%= review.rate %>,
                       });
               </script>
-         <% end %>
+          <% end %>
+        <% end %>
       </div>
       <div class="row tab-pane fade" id="bookmark" role="tabpanel" aria-labelledby="bookmark-tab">
-        <% @bookmarks.each do |bookmark| %>
-          <div class="col-sm-4 pt-3">
-            <%= link_to book_path(bookmark.book), class: 'd-block text-center', style: "height:150px;" do %>
-              <%= image_tag bookmark.book.image_url + "?_ex=150x150", class: 'img-fluid' %>
-            <% end %>
-            <%= link_to book_path(bookmark.book), class: 'd-block text-center' do %>
-              <strong class="text-dark"><%= truncate(bookmark.book.title, length: 12, omission: "[...]") %></strong>
-            <% end %>
-            <div class="text-center mt-2">
-              <%= render 'public/books/bookmark', book: bookmark.book %>
+        <% if @bookmarks.exists? %>
+          <% @bookmarks.each do |bookmark| %>
+            <div class="col-sm-4 pt-3">
+              <%= link_to book_path(bookmark.book), class: 'd-block text-center', style: "height:150px;" do %>
+                <%= image_tag bookmark.book.image_url + "?_ex=150x150", class: 'img-fluid' %>
+              <% end %>
+              <%= link_to book_path(bookmark.book), class: 'd-block text-center' do %>
+                <strong class="text-dark"><%= truncate(bookmark.book.title, length: 12, omission: "[...]") %></strong>
+              <% end %>
+              <div class="text-center mt-2">
+                <%= render 'public/books/bookmark', book: bookmark.book %>
+              </div>
             </div>
+          <% end %>
+        <% else %>
+          <div class="text-center">
+             <%= image_tag 'no-bookmark.png', size: '230x420' %>
           </div>
         <% end %>
       </div>
       <div class="tab-pane fade" id="follow_lists" role="tabpanel" aria-labelledby="follow_lists-tab">
         <div class="pt-3">
-          <%= render 'public/users/follow_lists', users: @following_users %>
+          <% if @following_users.empty? %>
+           <div class="text-center">
+             <%= image_tag 'no-following.png', size: '230x420' %>
+           </div>
+          <% else %>
+            <%= render 'public/users/follow_lists', users: @following_users %>
+          <% end %>
         </div>
       </div>
       <div class="tab-pane fade" id="follower_lists" role="tabpanel" aria-labelledby="follower_lists-tab">
         <div class="pt-3">
-          <%= render 'public/users/follow_lists', users: @followers %>
+          <% if @followers.empty? %>
+           <div class="text-center">
+             <%= image_tag 'no-follower.png', size: '230x420' %>
+           </div>
+          <% else %>
+            <%= render 'public/users/follow_lists', users: @followers %>
+          <% end %>
         </div>
       </div>
     </div>
