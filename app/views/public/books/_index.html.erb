@@ -3,12 +3,11 @@
         <%= link_to book_path(book), class: 'd-block text-center', style: "height:250px;" do %>
           <%= image_tag book.image_url + "?_ex=250x250", class: 'img-fluid' %>
         <% end %>
-
-        <%= link_to book_path(book), class: 'd-block text-center' do %>
+      <div class="mt-2">
+        <%= link_to book_path(book), class: 'd-block' do %>
           <strong class="text-dark"><%= truncate(book.title, length: 12, omission: "[...]") %></strong>
         <% end %>
 
-      <div class="text-center mt-2">
         <div class="d-inline" id="star-rate-<%= book.id %>"></div>
         <div class="d-inline pl-2">
           <% if book.reviews.present? %>
@@ -18,14 +17,14 @@
           <% end %>
         </div>
       </div>
-      <div class="text-center mt-2">
+      <div class="mt-2">
         <% if book.reviews.exists? %>
           <%= book.reviews.count %>件のレビュー
         <% else %>
           0件のレビュー
         <% end %>
       </div>
-      <div class="text-center mt-2">
+      <div class="mt-2">
         <div class="d-inline-block">
           <%= link_to "詳細", book_path(book), class:"text-dark px-3 btn btn-warning" %>
         </div>

@@ -1,3 +1,61 @@
 // Place all the styles related to the public/homes controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+.title{
+  color: #5B4721;
+}
+
+.book-product{
+  background-color: #FFFBF2;
+}
+
+.top-new-review-box{
+  display: flex;
+}
+
+.swiper {
+  width: 70%;
+  height: 300px;
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+  position: absolute;
+  top: 50%;
+
+  &:after {
+    position: absolute;
+    content: "";
+    width: 0;
+    height: 0;
+    border-style: solid;
+    top: -50%;
+  }
+}
+
+.swiper-button-next {
+  right: 25px;
+
+  &::after {
+    border-width: 16px 0 16px 20px;
+    border-color: transparent transparent transparent #FDA214;
+    left: 100%;
+  }
+}
+
+.swiper-button-prev {
+  left: 25px;
+
+  &::after {
+    border-width: 16px 20px 16px 0;
+    border-color: transparent #FDA214 transparent transparent;
+    right: 100%;
+  }
+}
+
+.top-new-review{
+  width: 80%;
+  display: block;
+  margin: 0 auto;
+}
+

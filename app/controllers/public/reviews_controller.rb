@@ -23,6 +23,10 @@ class Public::ReviewsController < ApplicationController
   end
 
   def confirm
+    if params[:book].nil?
+      redirect_back(fallback_location: root_path)
+      return
+    end
     #bookが存在したらそれをとってきて無かったらパラメータから作る
     @book = Book.find_by(isbn: params.dig(:book, :isbn))
     unless @book

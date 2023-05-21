@@ -22,6 +22,7 @@ Rails.application.routes.draw do
     get 'users/withdraw' => 'users#withdraw'
     patch 'users/unsubscribe' => 'users#unsubscribe'
     post 'reviews/confirm' => 'reviews#confirm'
+    get 'reviews/confirm' => 'reviews#confirm'
     get 'reviews/complete' => 'reviews#complete'
 
 

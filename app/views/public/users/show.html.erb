@@ -66,7 +66,7 @@
       <div class="tab-pane fade show active" id="reviews" role="tabpanel" aria-labelledby="reviews-tab">
         <% if @reviews.blank? %>
          <div class="text-center">
-           <%= image_tag 'no-review.png', size: '230x420' %>
+           <%= image_tag 'no-review.png', size: '200x400' %>
          </div>
         <% else %>
           <% @reviews.each do |review| %>
@@ -103,7 +103,7 @@
           <% end %>
         <% end %>
       </div>
-      <div class="row tab-pane fade" id="bookmark" role="tabpanel" aria-labelledby="bookmark-tab">
+      <div class="tab-pane fade" id="bookmark" role="tabpanel" aria-labelledby="bookmark-tab">
         <% if @bookmarks.exists? %>
           <% @bookmarks.each do |bookmark| %>
             <div class="col-sm-4 pt-3">
@@ -113,14 +113,14 @@
               <%= link_to book_path(bookmark.book), class: 'd-block text-center' do %>
                 <strong class="text-dark"><%= truncate(bookmark.book.title, length: 12, omission: "[...]") %></strong>
               <% end %>
-              <div class="text-center mt-2">
+              <div class="text-left mt-2 pl-2">
                 <%= render 'public/books/bookmark', book: bookmark.book %>
               </div>
             </div>
           <% end %>
         <% else %>
           <div class="text-center">
-             <%= image_tag 'no-bookmark.png', size: '230x420' %>
+             <%= image_tag 'no-bookmark.png', size: '200x400' %>
           </div>
         <% end %>
       </div>
@@ -128,7 +128,7 @@
         <div class="pt-3">
           <% if @following_users.empty? %>
            <div class="text-center">
-             <%= image_tag 'no-following.png', size: '230x420' %>
+             <%= image_tag 'no-following.png', size: '200x400' %>
            </div>
           <% else %>
             <%= render 'public/users/follow_lists', users: @following_users %>
@@ -139,7 +139,7 @@
         <div class="pt-3">
           <% if @followers.empty? %>
            <div class="text-center">
-             <%= image_tag 'no-follower.png', size: '230x420' %>
+             <%= image_tag 'no-follower.png', size: '200x400' %>
            </div>
           <% else %>
             <%= render 'public/users/follow_lists', users: @followers %>
