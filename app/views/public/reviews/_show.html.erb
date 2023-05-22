@@ -11,7 +11,7 @@
   <p>評価 :<%= review.rate %>点</p>
   <p id="star-rate-<%= review.id %>"></p>
   <div>
-    <%= review.content %><br>
+    <%= simple_format(review.content) %><br>
     <small><%= review.created_at&.strftime("%Y年%m月%d日") %></small>
   </div>
 </div>

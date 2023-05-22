@@ -13,6 +13,10 @@
  *= require_tree .
  *= require_self
  */
+ body{
+  background-color: #FFFBF2 !important;
+}
+
 .rounded-pill{
   background-color: #ee827d;
 }
@@ -58,6 +62,8 @@
   color: #5B4721;
 }
 
-body{
-  background-color: #FFFBF2 !important;
+.pagination{
+  width: 100%;
 }
+
+

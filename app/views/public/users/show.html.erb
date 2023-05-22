@@ -84,7 +84,7 @@
                 <div class='d-inline pl-2'><%= review.rate %>点</div>
               </div>
               <div class="mt-3">
-                <%= review.content %><br>
+                <%= simple_format(review.content) %><br>
                 <small class="d-inline-block"><%= review.created_at&.strftime("%Y年%m月%d日") %></small>
                 <%= render 'public/reviews/review_like', review:review %>
               </div>

@@ -64,7 +64,7 @@
                 <p id="star-rate-<%= review.id %>"></p>
               </div>
               <div>
-                <%= review.content %><br>
+                <%= simple_format(review.content) %><br>
                 <small class="d-inline-block"><%= review.created_at&.strftime("%Y年%m月%d日") %></small>
                 <%= render 'public/reviews/review_like', review:review %>
               </div>

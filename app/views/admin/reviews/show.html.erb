@@ -1,4 +1,4 @@
-<h4><%= @review.user.user_name %>さんのレビュー詳細</h4>
+<h4 class="pt-3"><%= @review.user.user_name %>さんのレビュー詳細</h4>
   <table class='table'>
     <tr>
       <th>作成日時</th>
@@ -14,7 +14,7 @@
     </tr>
     <tr>
       <th>レビュー内容</th>
-      <th><%= @review.content %></th>
+      <th><%= simple_format(@review.content) %></th>
     </tr>
     <tr>
       <th></th>
