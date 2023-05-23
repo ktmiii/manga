@@ -1,14 +1,14 @@
 <% if review.review_liked_by?(current_user) %>
   <p class="d-inline-block">
-    <%= link_to review_review_likes_path(review),style:"color:#ee827d;", method: :delete do %>
+    <%= link_to review_review_likes_path(review),style:"color:#ee827d;", method: :delete, remote: true do %>
       <small>
-        <i class="far fa-thumbs-up"></i><%= review.review_likes.count %> 参考になった！
+        <i class="fas fa-thumbs-up"></i><%= review.review_likes.count %> 参考になった！
       </small>
     <% end %>
   </p>
 <% else %>
   <p class="d-inline-block">
-    <%= link_to review_review_likes_path(review), method: :post do %>
+    <%= link_to review_review_likes_path(review), method: :post, remote: true do %>
       <small>
         <i class="far fa-thumbs-up"></i><%= review.review_likes.count %> 参考になった！
       </small>

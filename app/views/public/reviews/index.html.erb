@@ -7,3 +7,6 @@
 <div class="row">
   <%= render 'public/books/index', books:@books %>
 </div>
+<div class="pagination d-flex justify-content-center mt-3">
+    <%= paginate @books, theme: 'bootstrap-5' %>
+</div>

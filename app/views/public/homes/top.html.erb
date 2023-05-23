@@ -30,7 +30,7 @@
                 </div>
                 <div class="pb-2">
                   <small class="d-inline-block"><%= review.created_at&.strftime("%Y年%m月%d日") %></small>
-                  <%= render 'public/reviews/review_like', review:review %>
+                  <%= render 'public/review_likes/review_like', review:review %>
                 </div>
               </div>
             </div>

@@ -1,0 +1,8 @@
+$('#paginateButton').html('<%=j render 'public/books/paginate_button', book: @book %>')
+<% if @reviews.any? %>
+  <% @reviews.each do |review| %>
+    $('#reviews').append('<%=j render "public/books/review", review: review %>')
+  <% end %>
+<% else %>
+  $('#paginateButton').remove()
+<% end %>

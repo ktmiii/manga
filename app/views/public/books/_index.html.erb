@@ -28,8 +28,8 @@
         <div class="d-inline-block">
           <%= link_to "詳細", book_path(book), class:"text-dark px-3 btn btn-warning" %>
         </div>
-        <div class="d-inline-block pl-2">
-          <%= render 'public/books/bookmark', book: book %>
+        <div id="bookmark_buttons_<%= book.id %>", class="d-inline-block pl-2">
+          <%= render 'public/bookmarks/bookmark', book: book %>
         </div>
       </div>
     </div>

@@ -43,46 +43,27 @@
      |<%= link_to '古い順', book_path(old: "true") %>
      |<%= link_to '評価の高い順', book_path(star_count: "true") %>
     </p>
-     <% if @reviews.blank? %>
-       <div class="text-center">
-         <%= image_tag 'no-review.png', size: '260x450' %>
-       </div>
-     <% else %>
-         <% @reviews.each do |review| %>
-            <div class="row">
-              <div class="col-sm-2">
-                <%= image_tag review.user.get_profile_image(100,100), class: "rounded-circle" %>
-              </div>
-              <div class="col-sm-10">
-                <%= link_to(review.user) do %>
-                  <strong><%= review.user.user_name %></strong>
-                <% end %>
-                  <strong>さん</strong><br>
-                <%= review.user.age_group %>/
-                <%= review.user.gender_i18n %><br>
-                評価 :<%= review.rate %>点
-                <p id="star-rate-<%= review.id %>"></p>
-              </div>
-              <div>
-                <%= simple_format(review.content) %><br>
-                <small class="d-inline-block"><%= review.created_at&.strftime("%Y年%m月%d日") %></small>
-                <%= render 'public/reviews/review_like', review:review %>
-              </div>
-            </div><hr>
-              <script>
-                $('#star-rate-<%= review.id %>').empty();
-                 $('#star-rate-<%= review.id%>').raty({
-                        size      : 36,
-                        starOff   : '<%= asset_path('star-off.png') %>',
-                        starOn    : '<%= asset_path('star-on.png') %>',
-                        half      : false,
-                        readOnly: true,
-                        score: <%= review.rate %>,
-                      });
-              </script>
-         <% end %>
-     <% end %>
+    <% if @reviews.blank? %>
+      <div class="text-center">
+        <%= image_tag 'no-review.png', size: '260x450' %>
+      </div>
+    <% else %>
+      <div id="reviews">
+        <% @reviews.each do |review| %>
+          <%= render 'public/books/review', review: review %>
+        <% end %>
+      </div>
+      <div id="paginateButton">
+        <%= render 'public/books/paginate_button', book: @book %>
+      </div>
+
+    <% end %>
+
   </div>
 </div>
 
 <%= render 'public/books/rate_avg', reviews: @reviews, book: @book %>
+
+<script>
+
+</script>

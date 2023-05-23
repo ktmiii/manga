@@ -1,0 +1,4 @@
+<%= form_with url: book_path(book), local: false, method: :get do |f| %>
+  <%= f.hidden_field :page, value: (params[:page] || 1) %>
+  <%= f.submit "もっと見る", class: 'btn btn-outline-warning' %>
+<% end %>

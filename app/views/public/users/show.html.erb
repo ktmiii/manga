@@ -86,7 +86,7 @@
               <div class="mt-3">
                 <%= simple_format(review.content) %><br>
                 <small class="d-inline-block"><%= review.created_at&.strftime("%Y年%m月%d日") %></small>
-                <%= render 'public/reviews/review_like', review:review %>
+                <span id="review_like_buttons_<%= review.id %>"><%= render 'public/review_likes/review_like', review:review %></span>
               </div>
             </div><hr>
               <script>
@@ -113,8 +113,8 @@
               <%= link_to book_path(bookmark.book), class: 'd-block text-center' do %>
                 <strong class="text-dark"><%= truncate(bookmark.book.title, length: 12, omission: "[...]") %></strong>
               <% end %>
-              <div class="text-left mt-2 pl-2">
-                <%= render 'public/books/bookmark', book: bookmark.book %>
+              <div id="bookmark_buttons_<%= bookmark.book.id %>", class="text-left mt-2 pl-2">
+                <%= render 'public/bookmarks/bookmark', book: bookmark.book %>
               </div>
             </div>
           <% end %>
