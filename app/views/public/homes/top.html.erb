@@ -85,26 +85,22 @@
     <div class="text title mt-3">
       <h2><i class="far fa-star"></i>注目ランキング</h2>
     </div>
-    <div class="rank">
-      <div class="main-content searchable">
+    <div class="rank mx-auto py-3">
+      <div class="top-main-content searchable">
         <ul class="nav nav-tabs justify-content-center nav-pills nav-justified">
-          <li class="nav-item">
+          <li class="nav-item pr-1">
             <a href="#rank1" class="nav-link active" data-toggle="tab">総合評価</a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item pl-1">
             <a href="#rank2" class="nav-link" data-toggle="tab">レビュー数</a>
           </li>
         </ul>
         <div class="tab-content">
-          <div id="rank1" class="tab-pane active">
-            <div class="text-center">
-              <%= render 'public/homes/rank', books: @bookRates %>
-            </div>
+          <div id="rank1" class="tab-pane active pt-3">
+            <%= render 'public/homes/rank', books: @bookRates, rank: "rank1" %>
           </div>
-          <div id="rank2" class="tab-pane">
-            <div class="text-center">
-              <%= render 'public/homes/rank', books: @bookReviews %>
-            </div>
+          <div id="rank2" class="tab-pane pt-3">
+            <%= render 'public/homes/rank', books: @bookReviews, rank: "rank2" %>
           </div>
         </div>
       </div>

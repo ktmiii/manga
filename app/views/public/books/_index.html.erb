@@ -8,7 +8,7 @@
           <strong class="text"><%= truncate(book.title, length: 12, omission: "[...]") %></strong>
         <% end %>
 
-        <div class="d-inline" id="star-rate-<%= book.id %>"></div>
+        <div class="d-inline" id="star-rate--<%= book.id %>"></div>
         <div class="d-inline text pl-2">
           <% if book.reviews.present? %>
             <strong>
@@ -33,28 +33,6 @@
         </div>
       </div>
     </div>
-    <script>
-      <% if book.reviews.present? %>
-        $('#star-rate-<%= book.id %>').empty();
-        $('#star-rate-<%= book.id %>').raty({
-          size: 36,
-          starOff: '<%= asset_path('star-off.png') %>',
-          starOn: '<%= asset_path('star-on.png') %>',
-          starHalf: '<%= asset_path('star-half.png') %>',
-          half: true,
-          readOnly: true,
-          score: <%= "#{book.reviews.pluck(:rate).sum / book.reviews.count}" %>
-        });
-      <% else %>
-        $('#star-rate-<%= book.id %>').empty();
-        $('#star-rate-<%= book.id %>').raty({
-          size: 36,
-          starOff: '<%= asset_path('star-off.png') %>',
-          starOn: '<%= asset_path('star-on.png') %>',
-          half: false,
-          readOnly: true,
-          score: 0,
-        });
-      <% end %>
-    </script>
+    <%= render 'public/books/rate_avg', book: book %>
+
 <% end %>

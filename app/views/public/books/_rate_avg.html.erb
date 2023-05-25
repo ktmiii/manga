@@ -1,7 +1,13 @@
+<%
+name=""
+if defined?(rank)
+  name = rank
+end
+%>
 <script>
-  <% if reviews.present? %>
-    $('#star-rate-<%= book.id %>').empty();
-    $('#star-rate-<%= book.id %>').raty({
+  <% if book.reviews.present? %>
+    $('#star-rate-<%= name %>-<%= book.id %>').empty();
+    $('#star-rate-<%= name %>-<%= book.id %>').raty({
       size: 36,
       starOff: '<%= asset_path('star-off.png') %>',
       starOn: '<%= asset_path('star-on.png') %>',
@@ -12,8 +18,8 @@
       round: { down: .25 }
     });
   <% else %>
-    $('#star-rate-<%= book.id %>').empty();
-    $('#star-rate-<%= book.id %>').raty({
+    $('#star-rate-<%= name %>-<%= book.id %>').empty();
+    $('#star-rate-<%= name %>-<%= book.id %>').raty({
       size: 36,
       starOff: '<%= asset_path('star-off.png') %>',
       starOn: '<%= asset_path('star-on.png') %>',

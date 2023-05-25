@@ -74,4 +74,32 @@
   width: 100%;
 }
 
+.nav-tabs.nav-pills .nav-link.active{
+  color: #5B4721;
+  background-color: #fcc265;
+}
+
+.nav-tabs.nav-pills .nav-link{
+  color: #5B4721;
+  background-color: #ccbca1;
+}
+
+.rank{
+  width: 70%;
+}
+
+.rank-number-box {
+  position: relative;
+  display: inline-block;
+}
+.rank-number {
+  position: relative;
+  color: #5B4721;
+}
+.rank-number-icon {
+  position: absolute;
+  margin-left: -100%;
+  top: 20%;
+  color: #fcc265;
+}
 
