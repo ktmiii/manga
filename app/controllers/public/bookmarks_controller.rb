@@ -1,5 +1,5 @@
 class Public::BookmarksController < ApplicationController
-   before_action :authenticate_user!
+   before_action :authenticate_user!, only: [:create, :destroy]
 
   def create
     @book = Book.find(params[:book_id])

@@ -1,5 +1,4 @@
 <div class='review'>
-  <%# reviews.each do |review| %>
     <div class="row reviewNumber">
       <div class="col-sm-2">
         <%= image_tag review.user.get_profile_image(100,100), class: "rounded-circle" %>
@@ -31,5 +30,4 @@
               score: <%= review.rate %>,
             });
     </script>
-  <%# end %>
 </div>

@@ -1,0 +1,33 @@
+<% books.each.with_index(1) do |book, index| %>
+  <div>
+    <div class="d-inline-block">
+      <%= link_to book_path(book), style: "height:90px;" do %>
+        <span class="rank-number"><%= index %></span>
+        <%= image_tag book.image_url + "?_ex=100x100", class: 'img-fluid' %>
+      <% end %>
+    </div>
+    <div class="d-inline-block pl-2">
+      <%= link_to book_path(book) do %>
+        <%= truncate(book.title, length: 15, omission: "[...]") %>
+      <% end %><br>
+      <div class="d-inline" id="star-rate-<%= book.id %>"></div>
+      <div class="d-inline pl-2">
+          <strong>
+            <%= book.calculate_average_rate %>
+          </strong>
+      </div>
+  </div><hr>
+  <script>
+    $('#star-rate-<%= book.id %>').empty();
+    $('#star-rate-<%= book.id %>').raty({
+      size: 36,
+      starOff: '<%= asset_path('star-off.png') %>',
+      starOn: '<%= asset_path('star-on.png') %>',
+      starHalf: '<%= asset_path('star-half.png') %>',
+      half: true,
+      readOnly: true,
+      score: <%= "#{book.reviews.pluck(:rate).sum / book.reviews.count}" %>,
+      round: { down: .25 }
+    });
+  </script>
+<% end %>

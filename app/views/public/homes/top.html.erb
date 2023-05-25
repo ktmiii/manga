@@ -1,99 +1,115 @@
-<div class="text-center title mt-3">
-  <h2><i class="far fa-comment"></i>新着レビュー</h2>
-</div>
-  <div class="swiper mx-auto pt-3">
-    <div class="swiper-wrapper">
-      <% @reviews.each_with_index do |review, index| %>
-        <div class="swiper-slide">
-          <div class="top-new-review">
-            <div class="top-new-review person-info col-sm-3">
-              <div>
-                <%= image_tag review.user.get_profile_image(80,80), class: "rounded-circle" %><br>
-                <strong><%= review.user.user_name %></strong><br>
-                <%= review.user.age_group %>/
-                <%= review.user.gender_i18n %>
+<div class="row pt-3">
+  <div class="col">
+  </div>
+  <div class="text-center col-auto">
+    <div class="text title">
+      <h2><i class="far fa-comment"></i>新着レビュー</h2>
+    </div>
+    <div class="swiper mx-auto pt-3">
+        <div class="swiper-wrapper">
+          <% @reviews.each_with_index do |review, index| %>
+            <div class="swiper-slide">
+              <div class="top-new-review">
+                <div class="top-new-review person-info col-sm-3">
+                  <div>
+                    <%= image_tag review.user.get_profile_image(80,80), class: "rounded-circle" %><br>
+                    <strong><%= review.user.user_name %></strong><br>
+                    <%= review.user.age_group %>/
+                    <%= review.user.gender_i18n %>
+                  </div>
+                </div>
+                <div class="top-new-review-box border border-rounded col-sm-9 py-3">
+                  <div class="top-new-review book-product d-inline text-center p-2 m-2">
+                    <%= link_to book_path(review.book), style: "height:120px;" do %>
+                      <%= image_tag review.book.image_url + "?_ex=120x120", class: 'img-fluid' %>
+                    <% end %><br>
+                    <%= link_to book_path(review.book), class: 'd-block text-center' do %>
+                      <small class="text-dark"><%= truncate(review.book.title, length: 10, omission: "[...]") %></small>
+                    <% end %>
+                  </div>
+                  <div class="top-new-review book-review">
+                    <p id="star-rate-<%= review.id %>"></p>
+                    <div>
+                      <%= truncate(review.content, length: 50, omission: "[...]") %>
+                    </div>
+                    <div class="pb-2">
+                      <small class="d-inline-block"><%= review.created_at&.strftime("%Y年%m月%d日") %></small>
+                      <%= render 'public/review_likes/review_like', review:review %>
+                    </div>
+                  </div>
+                </div>
               </div>
+              <script>
+                $('#star-rate-<%= review.id %>').empty();
+                 $('#star-rate-<%= review.id%>').raty({
+                        size      : 36,
+                        starOff   : '<%= asset_path('star-off.png') %>',
+                        starOn    : '<%= asset_path('star-on.png') %>',
+                        half      : false,
+                        readOnly: true,
+                        score: <%= review.rate %>,
+                      });
+              </script>
             </div>
-            <div class="top-new-review-box border border-rounded col-sm-9">
-              <div class="top-new-review book-product d-inline text-center p-2 m-2">
-                <%= link_to book_path(review.book), style: "height:120px;" do %>
-                  <%= image_tag review.book.image_url + "?_ex=120x120", class: 'img-fluid' %>
-                <% end %><br>
-                <%= link_to book_path(review.book), class: 'd-block' do %>
-                  <small class="text-dark"><%= truncate(review.book.title, length: 10, omission: "[...]") %></small>
-                <% end %>
-              </div>
-              <div class="top-new-review book-review">
-                <p id="star-rate-<%= review.id %>"></p>
-                <div>
-                  <%= review.content %>
-                </div>
-                <div class="pb-2">
-                  <small class="d-inline-block"><%= review.created_at&.strftime("%Y年%m月%d日") %></small>
-                  <%= render 'public/review_likes/review_like', review:review %>
-                </div>
-              </div>
+          <% end %>
+        </div>
+        <div class="swiper-pagination"></div>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+      </div>
+    <script>
+        const swiper = new Swiper('.swiper', {
+        speed: 900,
+        slidesPerView: '1',
+        effect: "fade",
+        loop: true,
+        autoplay: {
+          delay: 3200,
+          disableOnInteraction: false,
+        },
+        fadeEffect: {
+          crossFade: true
+        },
+
+        pagination: {
+          el: '.swiper-pagination',
+        },
+
+        navigation: {
+          nextEl: '.swiper-button-next',
+          prevEl: '.swiper-button-prev',
+        }
+        });
+      </script>
+
+    <div class="text title mt-3">
+      <h2><i class="far fa-star"></i>注目ランキング</h2>
+    </div>
+    <div class="rank">
+      <div class="main-content searchable">
+        <ul class="nav nav-tabs justify-content-center nav-pills nav-justified">
+          <li class="nav-item">
+            <a href="#rank1" class="nav-link active" data-toggle="tab">総合評価</a>
+          </li>
+          <li class="nav-item">
+            <a href="#rank2" class="nav-link" data-toggle="tab">レビュー数</a>
+          </li>
+        </ul>
+        <div class="tab-content">
+          <div id="rank1" class="tab-pane active">
+            <div class="text-center">
+              <%= render 'public/homes/rank', books: @bookRates %>
+            </div>
+          </div>
+          <div id="rank2" class="tab-pane">
+            <div class="text-center">
+              <%= render 'public/homes/rank', books: @bookReviews %>
             </div>
           </div>
         </div>
-        <script>
-          $('#star-rate-<%= review.id %>').empty();
-           $('#star-rate-<%= review.id%>').raty({
-                  size      : 36,
-                  starOff   : '<%= asset_path('star-off.png') %>',
-                  starOn    : '<%= asset_path('star-on.png') %>',
-                  half      : false,
-                  readOnly: true,
-                  score: <%= review.rate %>,
-                });
-        </script>
-      <% end %>
+      </div>
     </div>
-    <div class="swiper-pagination"></div>
-    <div class="swiper-button-prev"></div>
-    <div class="swiper-button-next"></div>
   </div>
-  <script>
-    const swiper = new Swiper('.swiper', {
-    speed: 900,
-    slidesPerView: '1',
-    effect: "fade",
-    loop: true,
-    autoplay: {
-      delay: 3200,
-      disableOnInteraction: false,
-    },
-    fadeEffect: {
-      crossFade: true
-    },
-
-    pagination: {
-      el: '.swiper-pagination',
-    },
-
-    navigation: {
-      nextEl: '.swiper-button-next',
-      prevEl: '.swiper-button-prev',
-    }
-    });
-  </script>
-  
-<div class="text-center title mt-3">
-  <h2><i class="far fa-star"></i>注目ランキング</h2>
+  <div class="col">
+  </div>
 </div>
-  <div class="main-content searchable">
-    <ul class="nav nav-tabs" id="myTab" role="tablist">
-      <li class="nav-item">
-        <a class="nav-link active" id="rank1-tab" data-toggle="tab" href="#rank1" role="tab" aria-controls="rank1" aria-selected="true">総合評価</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" id="rank2-tab" data-toggle="tab" href="#rank2" role="tab" aria-controls="rank2" aria-selected="false">レビュー数</a>
-      </li>
-    </ul>
-    <div class="" id="myTabContent">
-      <div class="tab-pane fade show active" id="rank1" role="tabpanel" aria-labelledby="rank1-tab">
-      </div>
-      <div class="tab-pane fade" id="rank2" role="tabpanel" aria-labelledby="rank2-tab">
-      </div>
-    </div>
-  </div>

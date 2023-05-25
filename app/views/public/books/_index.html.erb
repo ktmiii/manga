@@ -1,30 +1,30 @@
 <% books.each do |book| %>
-    <div class="col-xs-6 col-sm-4 col-md-3 mt-3">
+    <div class="col-xs-6 col-sm-4 col-md-3 text mt-3">
         <%= link_to book_path(book), class: 'd-block text-center', style: "height:250px;" do %>
           <%= image_tag book.image_url + "?_ex=250x250", class: 'img-fluid' %>
         <% end %>
       <div class="mt-2">
         <%= link_to book_path(book), class: 'd-block' do %>
-          <strong class="text-dark"><%= truncate(book.title, length: 12, omission: "[...]") %></strong>
+          <strong class="text"><%= truncate(book.title, length: 12, omission: "[...]") %></strong>
         <% end %>
 
         <div class="d-inline" id="star-rate-<%= book.id %>"></div>
-        <div class="d-inline pl-2">
+        <div class="d-inline text pl-2">
           <% if book.reviews.present? %>
             <strong>
-              <%= (book.reviews.pluck(:rate).sum / book.reviews.count.to_f).round(1) %>
+              <%= book.calculate_average_rate %>
             </strong>
           <% end %>
         </div>
       </div>
-      <div class="mt-2">
+      <div class="text mt-2">
         <% if book.reviews.exists? %>
           <%= book.reviews.count %>件のレビュー
         <% else %>
           0件のレビュー
         <% end %>
       </div>
-      <div class="mt-2">
+      <div class="text mt-2">
         <div class="d-inline-block">
           <%= link_to "詳細", book_path(book), class:"text-dark px-3 btn btn-warning" %>
         </div>

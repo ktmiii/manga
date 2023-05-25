@@ -20,7 +20,7 @@
       <p class="d-inline">
         <% if @book.reviews.present? %>
           <strong>
-            <%= (@book.reviews.pluck(:rate).sum / @book.reviews.count.to_f).round(1) %>
+            <%= @book.calculate_average_rate %>
           </strong>
         <% end %>
       </p>
