@@ -17,17 +17,5 @@
           </strong>
       </div>
   </div><hr>
-  <script>
-    $('#star-rate-<%= book.id %>').empty();
-    $('#star-rate-<%= book.id %>').raty({
-      size: 36,
-      starOff: '<%= asset_path('star-off.png') %>',
-      starOn: '<%= asset_path('star-on.png') %>',
-      starHalf: '<%= asset_path('star-half.png') %>',
-      half: true,
-      readOnly: true,
-      score: <%= "#{book.reviews.pluck(:rate).sum / book.reviews.count}" %>,
-      round: { down: .25 }
-    });
-  </script>
+  <%= render 'public/books/rate_avg', book: book, reviews: book.reviews %>
 <% end %>
