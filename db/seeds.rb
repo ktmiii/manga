@@ -11,13 +11,9 @@ Admin.create!(
  password: 'password',
  )
 
-user = User.create!(email: 'kaneki@example.com', user_name: 'kaneki', password: 'password', gender: 0, birth_date: '1998-10-13')
-
-user.profile_image.attach(io: File.open("#{Rails.root}/db/fixtures/sample-user1.png"),
-                          filename: "sample-user1.png")
-
 users = User.create!(
   [
+    {email: 'kaneki@example.com', user_name: 'kaneki', password: 'password', gender: 0, birth_date: '1998-10-13'},
     {email: 'koto@example.com', user_name: 'koto', password: 'password',gender: 1, birth_date: '2003-12-13'},
     {email: 'ai@example.com', user_name: 'ai', password: 'password',gender: 2, birth_date: '1888-12-24'},
     {email: 'rize@example.com', user_name: 'rize', password: 'password',gender: 1, birth_date: '2000-10-15'},
