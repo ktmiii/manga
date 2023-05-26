@@ -13,8 +13,21 @@
  *= require_tree .
  *= require_self
  */
- body{
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  position: relative;
+  display: flex;
+  flex-flow: column;
+  min-height: 100vh;
+}
+
+main {
   background-color: #FFFBF2 !important;
+  flex: 1;
 }
 
 .text{

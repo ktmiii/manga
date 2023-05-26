@@ -3,7 +3,7 @@
       <div class="col-sm-2">
         <%= image_tag review.user.get_profile_image(100,100), class: "rounded-circle" %>
       </div>
-      <div class="col-sm-10">
+      <div class="col-sm-10 text">
         <%= link_to(review.user) do %>
           <strong><%= review.user.user_name %></strong>
         <% end %>
@@ -13,7 +13,7 @@
         評価 :<%= review.rate %>点
         <p id="star-rate-<%= review.id %>"></p>
       </div>
-      <div>
+      <div class="text">
         <%= simple_format(review.content) %><br>
         <small class="d-inline-block"><%= review.created_at&.strftime("%Y年%m月%d日") %></small>
         <span id="review_like_buttons_<%= review.id %>"><%= render 'public/review_likes/review_like', review:review %></span>

@@ -1,1 +1,11 @@
-<h1>投稿が完了しました。</h1>
+<div class="text text-center pt-5 pb-5">
+  <h4 class="pb-2">レビュー投稿完了</h4>
+  <%= image_tag 'logo.png', size: '250x140' %>
+  <h6 class="pt-2">ありがとうございます。レビューを受け付けました。</h6>
+  <div class="pt-5 pb-2">
+    <%= link_to "マイページでレビューを確認する", user_path(current_user), class:"text w-25 btn btn-warning" %>
+  </div>
+  <div>
+    <%= link_to "トップページへ", root_path, class:"text w-25 btn btn-warning" %>
+  </div>
+</div>

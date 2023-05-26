@@ -3,7 +3,7 @@
     <%= flash[:alert] %>
   </div>
 <% end %>
-<div class='row mt-3'>
+<div class='row text mt-3'>
   <div class="col-sm-4 manga info-top">
     <%= link_to(@book.item_url) do %>
       <%= image_tag @book.image_url + "?_ex=220x220", style: "height:220px;" %>
@@ -33,7 +33,7 @@
    <%= f.hidden_field :image_url %>
    <%= f.hidden_field :item_url %>
    <div class="mx-3">
-    <%= f.submit "レビューする", class: "btn btn-warning" %>
+    <%= f.submit "レビューする", class: "btn btn-warning text" %>
    </div>
  <% end %>
   </div>

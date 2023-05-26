@@ -1,19 +1,19 @@
 <div class="ml-2 mb-5 pl-3 review-color">
-  <h4>
+  <h4 class="text">
     <i class="fas fa-comment"></i>
     レビュー投稿フォーム
   </h4>
 </div>
-  <div class="row ml-2 mb-5 pl-3">
+  <div class="row text ml-2 mb-5 pl-3">
    <div class="col-sm-2">
      <%= image_tag @book.image_url + "?_ex=100x100" %>
    </div>
-   <div class="col-sm-10 pl-5">
+   <div class="col-sm-10 text pl-5">
      <strong><%= @book.title %></strong>
    </div>
   </div>
   <%= form_with model: @review, url: reviews_confirm_path, local: true do |f| %>
-    <div class="form-group">
+    <div class="form-group text">
       <strong>評価する</strong><hr>
        <h9>☆の部分をクリックして、5点満点で評価してください。</h9>
         <div class="form-group row pt-2 pb-4" id="star">
@@ -35,7 +35,7 @@
             <%= ff.hidden_field :image_url %>
             <%= ff.hidden_field :item_url %>
           <% end %>
-            <div class="text-center">
+            <div class="text text-center">
               <%= f.submit "入力内容を確認する", class: "btn btn-warning" %>
             </div>
     </div>

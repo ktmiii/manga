@@ -1,23 +1,29 @@
-<h4 class="pt-3"><%= @review.user.user_name %>さんのレビュー詳細</h4>
-  <table class='table'>
-    <tr>
-      <th>作成日時</th>
-      <th><%= @review.created_at.strftime("%Y/%m/%d %H:%M:%S") %></th>
-    </tr>
-    <tr>
-      <th>ユーザーネーム</th>
-      <th><%= @review.user.user_name %></th>
-    </tr>
-    <tr>
-      <th>本のタイトル</th>
-      <th><%= @review.book.title %></th>
-    </tr>
-    <tr>
-      <th>レビュー内容</th>
-      <th><%= simple_format(@review.content) %></th>
-    </tr>
-    <tr>
-      <th></th>
-      <th><%= link_to '削除する', admin_review_path(@review), method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger" %></th>
-    </tr>
+<h4 class="w-75 mx-auto text py-3"><%= @review.user.user_name %>さんのレビュー詳細</h4>
+  <table class='table w-75 mx-auto'>
+    <colgroup>
+      <col class="col-md-4">
+      <col class="col-md-7">
+    </colgroup>
+    <tbody>
+      <tr class="text">
+        <th>作成日時</th>
+        <th><%= @review.created_at.strftime("%Y/%m/%d %H:%M:%S") %></th>
+      </tr>
+      <tr class="text">
+        <th>ユーザーネーム</th>
+        <th><%= @review.user.user_name %></th>
+      </tr>
+      <tr class="text">
+        <th>本のタイトル</th>
+        <th><%= @review.book.title %></th>
+      </tr>
+      <tr class="text">
+        <th>レビュー内容</th>
+        <th><%= simple_format(@review.content) %></th>
+      </tr>
+      <tr class="text">
+        <th></th>
+        <th><%= link_to '削除する', admin_review_path(@review), method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger" %></th>
+      </tr>
+    </tbody>
   </table>

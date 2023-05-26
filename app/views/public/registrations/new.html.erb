@@ -8,7 +8,7 @@
     <%= alert %>
   </div>
 <% end %>
-  <div class="ml-2 mt-3">
+  <div class="text ml-2 mt-3">
     <h4>新規会員登録</h4>
   </div>
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
@@ -18,15 +18,15 @@
         <table class="table table-borderless">
           <tbody>
             <tr>
-              <td><%= f.label :'ユーザーネーム' %></td>
+              <td class="text"><%= f.label :'ユーザーネーム' %></td>
               <td></td>
               <td><%= f.text_field :user_name, autofocus: true, autocomplete: "user_name" %></td>
             </tr>
 
             <tr>
-              <td><%= f.label :'性別' %></td>
+              <td class="text"><%= f.label :'性別' %></td>
               <td></td>
-              <td><%= f.radio_button :gender, User.genders.key(0) %>
+              <td class="text"><%= f.radio_button :gender, User.genders.key(0) %>
                   <%= f.label :gender_male, User.genders_i18n[:male] %>
                   <%= f.radio_button :gender, User.genders.key(1) %>
                   <%= f.label :gender_female, User.genders_i18n[:female] %>
@@ -35,20 +35,20 @@
             </tr>
 
             <tr>
-              <td><%= f.label :'メールアドレス' %></td>
+              <td class="text"><%= f.label :'メールアドレス' %></td>
               <td></td>
               <td><%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "sample@example.com" %></td>
             </tr>
 
             <tr>
-              <td><%= f.label :'生年月日' %></td>
+              <td class="text"><%= f.label :'生年月日' %></td>
               <td></td>
-              <td><%= f.date_select :birth_date, use_month_numbers: true,start_year: 1930, end_year: (Time.now.year - 10), default: Date.new(1999, 1, 1) %></td>
-              <td><small>※年齢は後で変更することはできません。</small></td>
+              <td class="text"><%= f.date_select :birth_date, use_month_numbers: true,start_year: 1930, end_year: (Time.now.year - 10), default: Date.new(1999, 1, 1) %></td>
+              <td class="text"><small>※年齢は後で変更することはできません。</small></td>
             </tr>
 
             <tr>
-              <td><%= f.label :'パスワード' %>
+              <td class="text"><%= f.label :'パスワード' %>
                   <% if @minimum_password_length %>
                   <em>(<%= @minimum_password_length %> 文字以上)</em>
                   <% end %></td>
@@ -57,7 +57,7 @@
             </tr>
 
             <tr>
-              <td><%= f.label :'パスワード（確認用）' %></td>
+              <td class="text"><%= f.label :'パスワード（確認用）' %></td>
               <td></td>
               <td><%= f.password_field :password_confirmation, autocomplete: "new-password" %></td>
             </tr>
@@ -71,9 +71,9 @@
         </table>
       </div>
     <% end %>
-      <div class="py-1 mx-4">
+      <div class="text py-1 mx-4">
         <h6 class="bg-light">既に登録済みの方</h6>
       </div>
-      <div class="px-5">
+      <div class="text px-5">
         <small><%= link_to "こちら", new_user_session_path %>からログインしてください</small>
       </div>

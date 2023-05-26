@@ -1,6 +1,6 @@
 <div class='container'>
   <div class='row pt-5'>
-    <div class="col-sm-12 col-md-10 col-lg-8 px-sm-0 mx-auto tr-color">
+    <div class="col-sm-12 col-md-10 col-lg-8 px-sm-0 mx-auto text tr-color">
 
       <div class='py-3 px-3'>
         <h4>管理者ログイン</h4>
@@ -12,11 +12,11 @@
           <table class="table table-borderless px-5">
             <tbody>
               <tr>
-                <td><%= f.label :メールアドレス %></td>
+                <td class="text"><%= f.label :メールアドレス %></td>
                 <td><%= f.email_field :email, autofocus: true, autocomplete: "email" ,class: 'form-control'%></td>
               </tr>
               <tr>
-                <td><%= f.label :パスワード %></td>
+                <td class="text"><%= f.label :パスワード %></td>
                 <td><%= f.password_field :password, autocomplete: "new-password" ,class: 'form-control'%></td>
               </tr>
               <tr>

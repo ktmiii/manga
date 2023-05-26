@@ -1,10 +1,15 @@
-<h4>
+<h4 class="text pt-3">
   <i class="fas fa-comments"></i>
    レビュー一覧
 </h4>
 <table class='table table-hover table-inverse'>
+    <colgroup>
+      <col class="col-md-3">
+      <col class="col-md-3">
+      <col class="col-md-5">
+    </colgroup>
     <thead>
-     <tr>
+     <tr class="text">
       <th>作成日時</th>
       <th>ユーザーネーム</th>
       <th>レビュー内容</th>
@@ -12,7 +17,7 @@
     </thead>
   <tbody>
     <% @reviews.each do |review| %>
-     <tr>
+     <tr class="text">
        <td><%= link_to review.created_at.strftime("%Y/%m/%d %H:%M:%S"),admin_review_path(review) %></td>
        <td><%= review.user.user_name %></td>
        <td><%= truncate(review.content, length: 30, omission: "[...]") %></td>
@@ -20,4 +25,6 @@
     <% end %>
   </tbody>
  </table>
-  <%= paginate @reviews %>
+<div class="pagination d-flex justify-content-center mt-3">
+    <%= paginate @reviews, theme: 'bootstrap-5' %>
+</div>

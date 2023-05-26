@@ -1,93 +1,91 @@
-<header>
-  <nav class="navbar navbar-expand-lg">
-     <div class="container text mx-auto">
-      <%= link_to root_path do %>
-        <%= image_tag 'logo.png', size: '200x90' %>
-      <% end %>
-      <small>漫画を楽しむレビューサイト</small>
-       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-       </button>
-        <div class="collapse navbar-collapse" id="navbar">
-          <ul class="navbar-nav ml-auto">
-            <!--会員がログインしているとき-->
-            <% if user_signed_in? %>
-              <div class="text ml-2 mr-5 mt-2">
-                <%= form_with url: books_path, method: :get, local: true do |f| %>
-                  <%= f.text_field :search, placeholder: "漫画タイトルを検索" %>
-                  <%= f.submit "\uF002", class: 'fa_icon' %>
-                <% end %>
-              </div>
-             <li>
-               <%= link_to root_path, class: 'nav-link text' do %>
-                <i class="fas fa-smile-wink fa-spin"></i>トップ
-               <% end %>
-             </li>
-             <li>
-               <%= link_to reviews_path,class: 'nav-link text' do %>
-                <i class="fas fa-comments"></i>レビュー一覧
-               <% end %>
-             </li>
-             <li>
-               <%= link_to user_path(current_user),class: 'nav-link text' do %>
-                <i class="fas fa-user"></i> マイページ
-               <% end %>
-             </li>
-             <li>
-               <%= link_to destroy_user_session_path, method: :delete,class: 'nav-link text' do %>
-                <i class="fas fa-sign-out-alt"></i> ログアウト
-               <% end %>
-             </li>
+<nav class="navbar navbar-expand-lg">
+   <div class="container text mx-auto">
+    <%= link_to root_path do %>
+      <%= image_tag 'logo.png', size: '200x90' %>
+    <% end %>
+    <small>漫画を楽しむレビューサイト</small>
+     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+     </button>
+      <div class="collapse navbar-collapse" id="navbar">
+        <ul class="navbar-nav ml-auto">
+          <!--会員がログインしているとき-->
+          <% if user_signed_in? %>
+            <div class="text ml-2 mr-5 mt-2">
+              <%= form_with url: books_path, method: :get, local: true do |f| %>
+                <%= f.text_field :search, placeholder: "漫画タイトルを検索" %>
+                <%= f.submit "\uF002", class: 'fa_icon' %>
+              <% end %>
+            </div>
+           <li>
+             <%= link_to root_path, class: 'nav-link text' do %>
+              <i class="fas fa-smile-wink fa-spin"></i>トップ
+             <% end %>
+           </li>
+           <li>
+             <%= link_to reviews_path,class: 'nav-link text' do %>
+              <i class="fas fa-comments"></i>レビュー一覧
+             <% end %>
+           </li>
+           <li>
+             <%= link_to user_path(current_user),class: 'nav-link text' do %>
+              <i class="fas fa-user"></i> マイページ
+             <% end %>
+           </li>
+           <li>
+             <%= link_to destroy_user_session_path, method: :delete,class: 'nav-link text' do %>
+              <i class="fas fa-sign-out-alt"></i> ログアウト
+             <% end %>
+           </li>
 
-            <!--管理者がログインしているとき-->
-            <% elsif admin_signed_in? %>
-             <li>
-               <%= link_to admin_users_path,class: 'nav-link text' do %>
-                <i class="fas fa-users"></i> ユーザー一覧
-               <% end %>
-             </li>
-             <li>
-               <%= link_to admin_reviews_path,class: 'nav-link text' do %>
-                <i class="fas fa-comments"></i>レビュー一覧
-               <% end %>
-             </li>
-             <li>
-               <%= link_to destroy_admin_session_path, method: :delete,class: 'nav-link text' do %>
-                <i class="fas fa-sign-out-alt"></i> ログアウト
-               <% end %>
-             </li>
+          <!--管理者がログインしているとき-->
+          <% elsif admin_signed_in? %>
+           <li>
+             <%= link_to admin_users_path,class: 'nav-link text' do %>
+              <i class="fas fa-users"></i> ユーザー一覧
+             <% end %>
+           </li>
+           <li>
+             <%= link_to admin_reviews_path,class: 'nav-link text' do %>
+              <i class="fas fa-comments"></i>レビュー一覧
+             <% end %>
+           </li>
+           <li>
+             <%= link_to destroy_admin_session_path, method: :delete,class: 'nav-link text' do %>
+              <i class="fas fa-sign-out-alt"></i> ログアウト
+             <% end %>
+           </li>
 
-            <!--ログインしていないとき-->
-            <% else %>
-              <div class="text mr-5 mt-2">
-                <%= form_with url: books_path, method: :get, local: true do |f| %>
-                  <%= f.text_field :search, placeholder: "漫画タイトルを検索" %>
-                  <%= f.submit "\uF002", class: 'fa_icon' %>
-                <% end %>
-              </div>
-             <li>
-               <%= link_to root_path, class: 'nav-link text' do %>
-                <i class="fas fa-smile-wink fa-spin"></i>トップ
-               <% end %>
-             </li>
-             <li>
-               <%= link_to reviews_path,class: 'nav-link text' do %>
-                <i class="fas fa-comments"></i>レビュー一覧
-               <% end %>
-             </li>
-             <li>
-               <%= link_to new_user_registration_path,class: 'nav-link text' do %>
-                <i class="fas fa-user-plus"></i> 新規登録
-               <% end %>
-             </li>
-             <li>
-               <%= link_to new_user_session_path ,class: 'nav-link text' do %>
-                <i class="fas fa-sign-in-alt"></i> ログイン
-               <% end %>
-             </li>
-            <% end %>
-          </ul>
-        </div>
-     </div>
-  </nav>
-</header>
+          <!--ログインしていないとき-->
+          <% else %>
+            <div class="text mr-5 mt-2">
+              <%= form_with url: books_path, method: :get, local: true do |f| %>
+                <%= f.text_field :search, placeholder: "漫画タイトルを検索" %>
+                <%= f.submit "\uF002", class: 'fa_icon' %>
+              <% end %>
+            </div>
+           <li>
+             <%= link_to root_path, class: 'nav-link text' do %>
+              <i class="fas fa-smile-wink fa-spin"></i>トップ
+             <% end %>
+           </li>
+           <li>
+             <%= link_to reviews_path,class: 'nav-link text' do %>
+              <i class="fas fa-comments"></i>レビュー一覧
+             <% end %>
+           </li>
+           <li>
+             <%= link_to new_user_registration_path,class: 'nav-link text' do %>
+              <i class="fas fa-user-plus"></i> 新規登録
+             <% end %>
+           </li>
+           <li>
+             <%= link_to new_user_session_path ,class: 'nav-link text' do %>
+              <i class="fas fa-sign-in-alt"></i> ログイン
+             <% end %>
+           </li>
+          <% end %>
+        </ul>
+      </div>
+   </div>
+</nav>

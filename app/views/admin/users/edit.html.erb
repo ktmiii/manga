@@ -1,37 +1,43 @@
-<h4><%= @user.user_name %>さんの会員情報編集</h4>
+<h4 class="w-75 mx-auto text py-3"><%= @user.user_name %>さんの会員情報編集</h4>
  <%= form_with model:@user, url:admin_user_path(@user), method: :patch, local: true do |f| %>
-  <table class='table'>
-    <tr>
-      <th>会員ID</th>
-      <th><%= @user.id %></th>
-    </tr>
-    <tr>
-      <th>ユーザーネーム</th>
-      <th><%= @user.user_name %></th>
-    </tr>
-    <tr>
-      <th>年代</th>
-      <th><%= @user.age_group %></th>
-    </tr>
-    <tr>
-      <th>性別</th>
-      <th><%= @user.gender_i18n %></th>
-    </tr>
-    <tr>
-      <th>メールアドレス</th>
-      <th><%= @user.email %></th>
-    </tr>
-    <tr>
-      <th><label for="user_is_deleted">会員ステータス</label></th>
-      <th><%= f.radio_button :is_deleted, :true %>
-          <%= f.label :is_deleted, "退会" %>
-          <%= f.radio_button :is_deleted, :false %>
-          <%= f.label :is_deleted, "有効" %>
-      </th>
-    </tr>
-    <tr>
-      <th></th>
-      <th><%= f.submit '変更を保存',class: 'btn btn-success' %></th>
-    </tr>
+  <table class='table w-75 mx-auto'>
+    <colgroup>
+      <col class="col-md-5">
+      <col class="col-md-6">
+    </colgroup>
+    <tbody>
+      <tr class="text">
+        <th>会員ID</th>
+        <th><%= @user.id %></th>
+      </tr>
+      <tr class="text">
+        <th>ユーザーネーム</th>
+        <th><%= @user.user_name %></th>
+      </tr>
+      <tr class="text">
+        <th>年代</th>
+        <th><%= @user.age_group %></th>
+      </tr>
+      <tr class="text">
+        <th>性別</th>
+        <th><%= @user.gender_i18n %></th>
+      </tr>
+      <tr class="text">
+        <th>メールアドレス</th>
+        <th><%= @user.email %></th>
+      </tr>
+      <tr class="text">
+        <th><label for="user_is_deleted">会員ステータス</label></th>
+        <th><%= f.radio_button :is_deleted, :true %>
+            <%= f.label :is_deleted, "退会" %>
+            <%= f.radio_button :is_deleted, :false %>
+            <%= f.label :is_deleted, "有効" %>
+        </th>
+      </tr>
+      <tr class="text">
+        <th></th>
+        <th><%= f.submit '変更を保存',class: 'btn btn-warning' %></th>
+      </tr>
+    </tbody>
   </table>
  <% end %>

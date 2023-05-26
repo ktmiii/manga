@@ -3,11 +3,11 @@
   <%= flash[:alert] %>
 </div>
 
-  <div class='pb-3 px-2'>
+  <div class='text py-3 px-2'>
     <h4>ログイン</h4>
   </div>
 
-  <div class="py-1 px-3">
+  <div class="text py-1 px-3">
     <p "bg-light">会員の方はこちらからログイン</p>
   </div>
 
@@ -17,17 +17,17 @@
         <table class="table table-borderless px-5">
           <tbody>
             <tr>
-              <td><%= f.label :'ユーザーネーム' %></td>
+              <td class="text"><%= f.label :'ユーザーネーム' %></td>
               <td><%= f.text_field :user_name, autofocus: true, autocomplete: "user_name" %></td>
             </tr>
             <tr>
-              <td><%= f.label :パスワード %></td>
+              <td class="text"><%= f.label :パスワード %></td>
               <td><%= f.password_field :password, autocomplete: "new-password", class: 'form-control'%></td>
             </tr>
               <% if devise_mapping.rememberable? %>
             <tr>
               <td></td>
-              <td><%= f.check_box :remember_me %>
+              <td class="text"><%= f.check_box :remember_me %>
                   <%= f.label :remember_me %></td>
             </tr>
               <% end %>
@@ -41,6 +41,6 @@
     <% end %>
   </div>
 
-  <div class="py-1 px-2"><h6>会員登録がお済みでない方</h6></div>
-  <div class="px-5"><small><%= link_to "こちら",new_user_registration_path %>から新規登録を行ってください</small></div>
+  <div class="text py-1 px-2"><h6>会員登録がお済みでない方</h6></div>
+  <div class="text px-5"><small><%= link_to "こちら",new_user_registration_path %>から新規登録を行ってください</small></div>
 

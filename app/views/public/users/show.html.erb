@@ -36,12 +36,12 @@
       <small>参考になった！合計<%= @user.reviews.inject(0) { |sum, review| sum + review.review_likes.count } %></small>
       <div class="pt-2">
         <% if @user == current_user %>
-          <%= link_to "プロフィールを編集する", edit_user_path(@user),class: "btn btn-warning d-block"%>
+          <%= link_to "プロフィールを編集する", edit_user_path(@user),class: "btn btn-warning text d-block"%>
         <% else %>
           <% if current_user.following?(@user) %>
             <%= link_to "フォロー中", user_relationships_path(@user.id),class: "btn btn-info px-2 d-block", method: :delete %>
           <% else %>
-            <%= link_to "フォローする", user_relationships_path(@user.id), class:"btn btn-warning px-2 d-block", method: :post %>
+            <%= link_to "フォローする", user_relationships_path(@user.id), class:"btn btn-warning text px-2 d-block", method: :post %>
           <% end %>
         <% end %>
       </div>

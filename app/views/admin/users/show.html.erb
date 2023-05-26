@@ -1,31 +1,37 @@
-<h4 class="pt-3"><%= @user.user_name %>さんの会員詳細</h4>
-  <table class='table'>
-    <tr>
-      <th>会員ID</th>
-      <th><%= @user.id %></th>
-    </tr>
-    <tr>
-      <th>ユーザーネーム</th>
-      <th><%= @user.user_name %></th>
-    </tr>
-    <tr>
-      <th>年代</th>
-      <th><%= @user.age_group %></th>
-    </tr>
-    <tr>
-      <th>性別</th>
-      <th><%= @user.gender_i18n %></th>
-    </tr>
-    <tr>
-      <th>メールアドレス</th>
-      <th><%= @user.email %></th>
-    </tr>
-    <tr>
-      <th>会員ステータス</th>
-      <th><%= @user.is_deleted ? '退会' : '有効' %></th>
-    </tr>
-    <tr>
-      <th></th>
-      <th><%= link_to '編集する', edit_admin_user_path(@user), class: "btn btn-sm btn-success" %></th>
-    </tr>
+<h4 class="w-75 mx-auto text py-3"><%= @user.user_name %>さんの会員詳細</h4>
+  <table class='table w-75 mx-auto'>
+    <colgroup>
+      <col class="col-md-5">
+      <col class="col-md-6">
+    </colgroup>
+    <tbody>
+      <tr class="text">
+        <th>会員ID</th>
+        <th><%= @user.id %></th>
+      </tr>
+      <tr class="text">
+        <th>ユーザーネーム</th>
+        <th><%= @user.user_name %></th>
+      </tr>
+      <tr class="text">
+        <th>年代</th>
+        <th><%= @user.age_group %></th>
+      </tr>
+      <tr class="text">
+        <th>性別</th>
+        <th><%= @user.gender_i18n %></th>
+      </tr>
+      <tr class="text">
+        <th>メールアドレス</th>
+        <th><%= @user.email %></th>
+      </tr>
+      <tr class="text">
+        <th>会員ステータス</th>
+        <th><%= @user.is_deleted ? '退会' : '有効' %></th>
+      </tr>
+      <tr class="text">
+        <th></th>
+        <th><%= link_to '編集する', edit_admin_user_path(@user), class: "btn btn-sm btn-warning text px-2" %></th>
+      </tr>
+    </tbody>
   </table>

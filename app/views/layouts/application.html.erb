@@ -17,11 +17,12 @@
   </head>
 
   <body>
-    <%= render 'layouts/header' %>
-
-    <div class='container'>
+    <header>
+      <%= render 'layouts/header' %>
+    </header>
+    <main>
       <%= yield %>
-    </div>
-    <footer class="bg-white text text-right mt-3 py-3 pr-3">©2023 manganosusume</footer>
+    </main>
+    <footer class="manga-footer bg-white text text-right mt-3 py-3 pr-3">©2023 manganosusume</footer>
   </body>
 </html>
