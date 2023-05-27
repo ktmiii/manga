@@ -22,12 +22,13 @@ body {
   position: relative;
   display: flex;
   flex-flow: column;
-  min-height: 100vh;
+  min-height: 60vh;
 }
 
 main {
   background-color: #FFFBF2 !important;
-  flex: 1;
+  width: 100%;
+  min-height: 80vh;
 }
 
 .text{
@@ -116,3 +117,22 @@ main {
   color: #fcc265;
 }
 
+.index-book {
+  width: 95%;
+}
+
+.user-show{
+  width: 90%;
+}
+
+.review-info{
+  width: 90%;
+}
+
+.book-show{
+  width: 80%;
+}
+
+.admin-index{
+  width: 90%;
+}

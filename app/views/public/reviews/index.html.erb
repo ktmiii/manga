@@ -1,12 +1,12 @@
-<div class="ml-2 mb-5 pl-3 review-color">
-  <h4>
+<div class="ml-2 mb-3 py-1 pl-3 review-color">
+  <h4 class="text">
     <i class="fas fa-comments"></i>
     レビュー一覧ページ
   </h4>
 </div>
-<div class="row">
+<div class="row index-book d-block center mx-auto pl-5">
   <%= render 'public/books/index', books:@books %>
 </div>
-<div class="pagination d-flex justify-content-center mt-3">
+<div class="pagination d-flex justify-content-center py-3">
     <%= paginate @books, theme: 'bootstrap-5' %>
 </div>

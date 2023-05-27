@@ -4,6 +4,7 @@
     レビュー投稿フォーム
   </h4>
 </div>
+<div class="review-info mx-auto">
   <div class="row text ml-2 mb-5 pl-3">
    <div class="col-sm-2">
      <%= image_tag @book.image_url + "?_ex=100x100" %>
@@ -39,8 +40,8 @@
               <%= f.submit "入力内容を確認する", class: "btn btn-warning" %>
             </div>
     </div>
-        <% end %>
-
+  <% end %>
+</div>
 
 
  <!-- 評価javascript -->

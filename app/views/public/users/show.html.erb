@@ -1,5 +1,5 @@
-<div class="clearfix pt-3">
-  <div class="personal sidebar searchable">
+<div class="user-show pt-3 mx-auto">
+  <div class="personal sidebar searchable col-sm-5">
     <div class="wrapper clearfix">
       <div class="left">
         <%= image_tag @user.get_profile_image(80,80), class: "rounded-circle" %>
@@ -47,7 +47,7 @@
       </div>
     </div>
   </div>
-  <div class="main-content searchable text">
+  <div class="main-content searchable text col-sm-7">
     <ul class="nav nav-tabs" id="myTab" role="tablist">
       <li class="nav-item">
         <a class="nav-link active" id="reviews-tab" data-toggle="tab" href="#reviews" role="tab" aria-controls="reviews" aria-selected="true">投稿レビュー</a>

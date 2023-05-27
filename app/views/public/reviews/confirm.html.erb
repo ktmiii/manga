@@ -4,45 +4,46 @@
     投稿内容の確認
   </h4>
 </div>
-<div class="text">投稿プレビュー</div>
-<div class="row border rounded c enter-block py-5 px-3">
-  <div class="d-inline col text-right pr-2">
-    <div class="col-sm-4">
-        <%= image_tag @book.image_url + "?_ex=100x100" %>
-    </div>
-    <div class="col-sm-8 text text-left">
-        <strong class="text"><%= @book.title %></strong>
-        <p id="star-rate-<%= @book.id %>"></p>
-        <%= render 'public/books/rate_avg', reviews: @book.reviews, book: @book %>
-    </div>
-  </div>
-  <div class="d-inline col pull-left pl-2">
-    <%= render "public/reviews/show", review: @review %>
-  </div>
-</div>
-<div>
-  <P class="note text text-center">一度投稿したレビューは後から<span class="marker">変更することができません</span><br>
-    送信前に評価およびレビューをもう一度ご確認ください</p>
-</div>
-<%= form_with(model: @review, url: {action: :create}, local: true) do |f| %>
-  <div class="row text text-center">
-    <%= f.hidden_field :rate %>
-    <%= f.hidden_field :content %>
-
-      <%= fields_for @book do |ff| %>
-        <%= ff.hidden_field :isbn %>
-        <%= ff.hidden_field :title %>
-        <%= ff.hidden_field :author %>
-        <%= ff.hidden_field :image_url %>
-        <%= ff.hidden_field :item_url %>
-      <% end %>
-      <div class="d-inline col mr-1">
-        <%= link_to :back do %>
-          <span class="btn btn-info text", style= "width:220px;">戻って修正する</span>
-        <% end %>
-      <div class="d-inline col ml-1">
-        <%= f.submit '投稿する', class: "btn btn-warning text", style: "width:220px;" %>
+<div class="review-info mx-auto">
+  <div class="text">投稿プレビュー</div>
+  <div class="row border rounded c enter-block py-5 px-3">
+    <div class="d-inline col text-right pr-2">
+      <div class="col-sm-4">
+          <%= image_tag @book.image_url + "?_ex=100x100" %>
       </div>
+      <div class="col-sm-8 text text-left">
+          <strong class="text"><%= @book.title %></strong>
+          <p id="star-rate-<%= @book.id %>"></p>
+          <%= render 'public/books/rate_avg', reviews: @book.reviews, book: @book %>
+      </div>
+    </div>
+    <div class="d-inline col pull-left pl-2">
+      <%= render "public/reviews/show", review: @review %>
+    </div>
   </div>
-<% end %>
+  <div>
+    <P class="note text text-center pt-1">一度投稿したレビューは後から<span class="marker">変更することができません</span><br>
+      送信前に評価およびレビューをもう一度ご確認ください</p>
+  </div>
+  <%= form_with(model: @review, url: {action: :create}, local: true) do |f| %>
+    <div class="row text text-center">
+      <%= f.hidden_field :rate %>
+      <%= f.hidden_field :content %>
 
+        <%= fields_for @book do |ff| %>
+          <%= ff.hidden_field :isbn %>
+          <%= ff.hidden_field :title %>
+          <%= ff.hidden_field :author %>
+          <%= ff.hidden_field :image_url %>
+          <%= ff.hidden_field :item_url %>
+        <% end %>
+        <div class="d-inline col mr-1 pb-3">
+          <%= link_to :back do %>
+            <span class="btn btn-info text", style= "width:220px;">戻って修正する</span>
+          <% end %>
+        <div class="d-inline col ml-1 pb-3">
+          <%= f.submit '投稿する', class: "btn btn-warning text", style: "width:220px;" %>
+        </div>
+    </div>
+  <% end %>
+</div>

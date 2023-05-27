@@ -1,33 +1,35 @@
-<h4 class="text pt-3">
-  <i class="fas fa-users"></i>
-  会員一覧
-</h4>
-<table class='table table-hover table-inverse'>
-    <colgroup>
-      <col class="col-md-2">
-      <col class="col-md-3">
-      <col class="col-md-4">
-      <col class="col-md-2">
-    </colgroup>
-    <thead>
-     <tr class="text">
-      <th>会員ID</th>
-      <th>氏名</th>
-      <th>メールアドレス</th>
-      <th>ステータス</th>
-     </tr>
-    </thead>
-  <tbody>
-    <% @users.each do |user| %>
-     <tr class="text">
-       <td><%= user.id %></td>
-       <td><%= link_to user.user_name,admin_user_path(user) %></td>
-       <td><%= user.email %></td>
-       <td class="mx-auto"><%= user.is_deleted ? '退会' : '有効' %></td>
-     </tr>
-    <% end %>
-  </tbody>
-</table>
-<div class="pagination d-flex justify-content-center mt-3">
-    <%= paginate @users, theme: 'bootstrap-5' %>
+<div class="admin-index mx-auto">
+ <h4 class="text pt-3">
+   <i class="fas fa-users"></i>
+   会員一覧
+ </h4>
+ <table class='table table-hover table-inverse'>
+     <colgroup>
+       <col class="col-md-2">
+       <col class="col-md-3">
+       <col class="col-md-4">
+       <col class="col-md-2">
+     </colgroup>
+     <thead>
+      <tr class="text">
+       <th>会員ID</th>
+       <th>氏名</th>
+       <th>メールアドレス</th>
+       <th>ステータス</th>
+      </tr>
+     </thead>
+   <tbody>
+     <% @users.each do |user| %>
+      <tr class="text">
+        <td><%= user.id %></td>
+        <td><%= link_to user.user_name,admin_user_path(user) %></td>
+        <td><%= user.email %></td>
+        <td class="mx-auto"><%= user.is_deleted ? '退会' : '有効' %></td>
+      </tr>
+     <% end %>
+   </tbody>
+ </table>
+ <div class="pagination d-flex justify-content-center mt-3">
+     <%= paginate @users, theme: 'bootstrap-5' %>
+ </div>
 </div>
