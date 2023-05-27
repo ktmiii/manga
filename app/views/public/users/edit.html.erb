@@ -1,47 +1,46 @@
-<div class="user_show mx-auto pt-3">
-  <h4 class="text">会員情報編集</h4>
+  <h4 class="w-75 mx-auto text py-3">会員情報編集</h4>
    <%= form_with model:@user, url:user_path(@user), method: :patch, local: true do |f| %>
-    <table class='table'>
-      <tr>
-        <th></th>
-        <th class="text text-center"><%= image_tag @user.get_profile_image(100,100), size: "100x100", class: "rounded-circle", id: "imageThumb" %><br>
-          <%= f.label :profile_image, "プロフィール画像を設定する", class: "image_input_btn mt-2", for: "imageField", style: 'margin:auto;' %>
-          <%= f.file_field :profile_image, class: "image_form", id: "imageField" %>
-        </th>
-        <th></th>
-      </tr>
-      <tr class="text">
-        <th class="pl-4"><%= f.label :'ユーザーネーム' %></th>
-        <th></th>
-        <th><%= f.text_field :user_name %></th>
-      </tr>
-      <tr class="text">
-        <th class="pl-4"><%= f.label :'性別' %></th>
-        <th></th>
-        <th><%= f.radio_button :gender, User.genders.key(0) %>
-            <%= f.label :gender_male, User.genders_i18n[:male] %>
-            <%= f.radio_button :gender, User.genders.key(1) %>
-            <%= f.label :gender_female, User.genders_i18n[:female] %>
-            <%= f.radio_button :gender, User.genders.key(2) %>
-            <%= f.label :gender_no_answer, User.genders_i18n[:no_answer] %></th>
-      </tr>
-      <tr class="text">
-        <th class="pl-4"><%= f.label :'メールアドレス' %></th>
-        <th></th>
-        <th><%= f.email_field :email %></th>
-      </tr>
-      </tr>
-      <tr>
-        <th></th>
-        <th></th>
-        <th>
-          <%= f.submit '変更を保存',class: 'btn btn-warning text' %>
-          <%= link_to "退会する", users_withdraw_path, class:"btn btn-danger my-2 offset-sm-1" %>
-        </th>
-      </tr>
+    <table class='table w-75 mx-auto'>
+      <tbody>
+        <tr class="text">
+          <th><%= f.label :'プロフィール画像', style: "width: 130px;" %></th>
+          <td class="float-left pl-5">
+           <div class="user_info_edit">
+            <p class="text-left"><%= image_tag @user.get_profile_image(100,100), size: "100x100", class: "rounded-circle", id: "imageThumb" %></p>
+            <%= f.label :profile_image, "ファイルを選択", class: "image_input_btn mt-2", for: "imageField" %>
+            <%= f.file_field :profile_image, class: "image_form", id: "imageField" %>
+           </div>
+          </td>
+        </tr>
+        <tr class="text">
+          <th><%= f.label :'ユーザーネーム' %></th>
+          <td class="pl-4"><%= f.text_field :user_name %></td>
+        </tr>
+        <tr class="text">
+          <th><%= f.label :'性別' %></th>
+          <td class="pl-4"><%= f.radio_button :gender, User.genders.key(0) %>
+              <%= f.label :gender_male, User.genders_i18n[:male] %>
+              <%= f.radio_button :gender, User.genders.key(1) %>
+              <%= f.label :gender_female, User.genders_i18n[:female] %>
+              <%= f.radio_button :gender, User.genders.key(2) %>
+              <%= f.label :gender_no_answer, User.genders_i18n[:no_answer] %>
+          </td>
+        </tr>
+        <tr class="text">
+          <th><%= f.label :'メールアドレス' %></th>
+          <td class="pl-4"><%= f.email_field :email %></td>
+        </tr>
+        <tr>
+          <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<div style="width: 30px;"></div></th>
+          <td class="pl-4">
+            <p class="d-inline-block"><%= f.submit '変更を保存',class: 'btn btn-warning text px-2' %></p>
+            <p class="d-inline-block"><%= link_to "退会する", users_withdraw_path, class:"btn btn-danger px-3" %></p>
+          </td>
+        </tr>
+      </tbody>
     </table>
    <% end %>
-  
+
    <script>
      $('#imageField').on('change', (e) => {
        const input = e.target
@@ -54,4 +53,3 @@
        }
      })
    </script>
-</div>

@@ -4,28 +4,23 @@
     レビュー一覧
  </h4>
  <table class='table w-90 mx-auto table-hover table-inverse'>
-     <colgroup>
-       <col class="col-md-3">
-       <col class="col-md-3">
-       <col class="col-md-5">
-     </colgroup>
-     <thead>
-      <tr class="text">
-       <th>作成日時</th>
-       <th>ユーザーネーム</th>
-       <th>レビュー内容</th>
-      </tr>
-     </thead>
-   <tbody>
-     <% @reviews.each do |review| %>
-      <tr class="text">
-        <td><%= link_to review.created_at.strftime("%Y/%m/%d %H:%M:%S"),admin_review_path(review) %></td>
-        <td><%= review.user.user_name %></td>
-        <td><%= truncate(review.content, length: 30, omission: "[...]") %></td>
-      </tr>
-     <% end %>
-   </tbody>
-  </table>
+  <thead>
+   <tr class="text">
+    <th>作成日時</th>
+    <th class="pl-3">ユーザーネーム</th>
+    <th class="pl-5">レビュー内容</th>
+   </tr>
+  </thead>
+  <tbody>
+    <% @reviews.each do |review| %>
+     <tr class="text">
+       <td><%= link_to review.created_at.strftime("%Y/%m/%d %H:%M:%S"),admin_review_path(review) %></td>
+       <td class="pl-3"><%= review.user.user_name %></td>
+       <td class="pl-5"><%= truncate(review.content, length: 40, omission: "[...]") %></td>
+     </tr>
+    <% end %>
+  </tbody>
+ </table>
  <div class="pagination d-flex justify-content-center mt-3">
      <%= paginate @reviews, theme: 'bootstrap-5' %>
  </div>
