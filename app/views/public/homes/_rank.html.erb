@@ -10,15 +10,20 @@
       <% end %>
     </div>
     <div class="d-inline-block text pl-4">
-      <%= link_to book_path(book), class:"text" do %>
-        <%= truncate(book.title, length: 15, omission: "[...]") %>
-      <% end %><br>
-      <div class="d-inline" id="star-rate-<%= rank %>-<%= book.id %>"></div>
-      <div class="d-inline pl-2">
-          <strong>
-            <%= book.calculate_average_rate %>
-          </strong>
+      <div class="pb-1">
+        <%= link_to book_path(book), class:"text" do %>
+          <%= truncate(book.title, length: 15, omission: "[...]") %>
+        <% end %>
       </div>
+      <div class="d-inline" id="star-rate-<%= rank %>-<%= book.id %>"></div>
+      <div class="d-inline pl-1">
+        <strong>
+          <%= book.calculate_average_rate %>
+        </strong>
+      </div><br>
+      <small class="pt-2">
+        <%= book.reviews.count %>件のレビュー
+      </small>
     </div>
   </div><hr>
   <%= render 'public/books/rate_avg', book: book, rank: rank %>

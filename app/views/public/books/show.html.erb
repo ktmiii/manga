@@ -12,7 +12,7 @@
       <small><%= @book.author %></small>
     </div>
     <%= link_to(@book.item_url) do %>
-      <strong><%= @book.title %></strong>
+      <strong><%= truncate(@book.title, length: 20, omission: "[...]") %></strong>
     <% end %>
     <div class="pb-2 pt-1">
       <p class="d-inline" id="star-rate--<%= @book.id %>"></p>
@@ -25,6 +25,9 @@
         <% end %>
       </p>
     </div>
+    <%= link_to(@book.item_url) do %>
+        <small class="text">購入は</small>こちら<small class="text">から</small>
+    <% end %>
 
  <%= form_with model: @book, url: new_review_path, method: :get, local: true do |f| %>
    <%= f.hidden_field :isbn %>
@@ -32,8 +35,8 @@
    <%= f.hidden_field :author %>
    <%= f.hidden_field :image_url %>
    <%= f.hidden_field :item_url %>
-   <div class="mx-3">
-    <%= f.submit "レビューする", class: "btn btn-warning text" %>
+   <div class="mt-2">
+    <%= f.submit "レビューする", class: "btn btn-warning text px-3" %>
    </div>
  <% end %>
   </div>
