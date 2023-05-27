@@ -4,7 +4,7 @@ class Public::UsersController < ApplicationController
     @user = User.find(params[:id])
     @age_group = @user.age_group
     @reviews = @user.reviews
-    @bookmarks = Bookmark.where(user_id: current_user.id)
+    @bookmarks = Bookmark.where(user_id: @user.id)
     @review_likes = ReviewLike.where(user_id: current_user.id)
     @following_users = @user.followings
     @followers = @user.followers
