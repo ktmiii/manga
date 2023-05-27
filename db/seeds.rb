@@ -14,10 +14,10 @@ Admin.create!(
 users = User.create!(
   [
     {email: 'kaneki@example.com', user_name: 'kaneki', password: 'password', gender: 0, birth_date: '1998-10-13', profile_image: ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/sample_user.png"), filename:"sample_user.png")},
-    {email: 'koto@example.com', user_name: 'koto', password: 'password',gender: 1, birth_date: '2003-12-13'},
+    {email: 'koo@example.com', user_name: 'koto', password: 'password',gender: 1, birth_date: '2003-12-13'},
     {email: 'ai@example.com', user_name: 'ai', password: 'password',gender: 2, birth_date: '1888-12-24'},
     {email: 'rize@example.com', user_name: 'rize', password: 'password',gender: 1, birth_date: '2000-10-15'},
-    {email: 'kyan@example.com', user_name: 'kyan', password: 'password',gender: 1, birth_date: '1999-12-16'},
+    {email: 'bob@example.com', user_name: 'kyan', password: 'password',gender: 1, birth_date: '1999-12-16'},
     {email: 'tom@example.com', user_name: 'tom', password: 'password',gender: 0, birth_date: '1997-01-10'},
     {email: 'jery@example.com', user_name: 'jery', password: 'password',gender: 0, birth_date: '1995-02-19'},
     {email: 'ann@example.com', user_name: 'ann', password: 'password',gender: 1, birth_date: '1980-03-13'},
