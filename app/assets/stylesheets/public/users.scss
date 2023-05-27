@@ -24,11 +24,15 @@
   padding-left: 100px;
 }
 
-.col-sm-3{
+// .col-sm-3{
+//   width: 33%;
+// }
+
+.item_detail.col-sm-3.item.px-0{
   width: 33%;
 }
 
-.personal .top-info .item .number {
+.personal .top_info .item .number {
   font-size: 19px;
   font-weight: bold;
   display: block;

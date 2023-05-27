@@ -7,7 +7,6 @@
         <th class="text text-center"><%= image_tag @user.get_profile_image(100,100), size: "100x100", class: "rounded-circle", id: "imageThumb" %><br>
           <%= f.label :profile_image, "プロフィール画像を設定する", class: "image_input_btn mt-2", for: "imageField", style: 'margin:auto;' %>
           <%= f.file_field :profile_image, class: "image_form", id: "imageField" %>
-          <small>※画像はjpgのものをご使用ください。</small>
         </th>
         <th></th>
       </tr>

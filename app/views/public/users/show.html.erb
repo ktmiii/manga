@@ -5,20 +5,20 @@
         <%= image_tag @user.get_profile_image(80,80), class: "rounded-circle" %>
       </div>
       <div class="right">
-        <div class="top-info text clearfix d-flex align-items-center">
-          <div class="col-sm-3 item px-0">
+        <div class="top_info text clearfix align-items-center">
+          <div class="item_detail col-sm-3 item px-0">
             <span class="number">
               <%= @user.reviews.count.to_i %>
             </span>
             <span class="txt"><small>総レビュー数</small></span>
           </div>
-          <div class="col-sm-3 item px-0">
+          <div class="item_detail col-sm-3 item px-0">
             <span class="number">
               <%= @user.followings.count %>
             </span>
             <span class="txt"><small>フォロー</small></span>
           </div>
-          <div class="col-sm-3 item px-0">
+          <div class="item_detail col-sm-3 item px-0">
             <span class="number">
               <%= @user.followers.count %>
             </span>
