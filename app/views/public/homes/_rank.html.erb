@@ -2,9 +2,9 @@
   <div class="mx-auto my-auto">
     <div class="d-inline-block text">
       <%= link_to book_path(book), style: "height:90px;" do %>
-        <span class="rank-number-box">
-          <i class="fas fa-crown fa-lg rank-number-icon"></i>
-          <span class="rank-number"><%= index %></span>
+        <span class="rank_number_box">
+          <i class="fas fa-crown fa-lg rank_number_icon"></i>
+          <span class="rank_number"><%= index %></span>
         </span>
         <%= image_tag book.image_url + "?_ex=100x100", style: "width:90px;", class: 'img-fluid pl-4' %>
       <% end %>

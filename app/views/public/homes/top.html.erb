@@ -9,8 +9,8 @@
       <div class="swiper-wrapper">
         <% @reviews.each_with_index do |review, index| %>
           <div class="swiper-slide">
-            <div class="top-new-review">
-              <div class="top-new-review person-info col-sm-3">
+            <div class="top_new_review">
+              <div class="top_new_review person_info col-sm-3">
                 <div class="text">
                   <%= image_tag review.user.get_profile_image(80,80), class: "rounded-circle" %><br>
                   <strong><%= review.user.user_name %></strong><br>
@@ -18,8 +18,8 @@
                   <%= review.user.gender_i18n %>
                 </div>
               </div>
-              <div class="top-new-review-box border border-rounded col-sm-9 py-3">
-                <div class="top-new-review book-product d-inline text-center p-2 m-2">
+              <div class="top_new_review_box border border-rounded col-sm-9 py-3">
+                <div class="top_new_review book_product d-inline text-center p-2 m-2">
                   <%= link_to book_path(review.book), style: "height:120px;" do %>
                     <%= image_tag review.book.image_url + "?_ex=120x120", class: 'img-fluid' %>
                   <% end %><br>
@@ -27,7 +27,7 @@
                     <small class="text"><%= truncate(review.book.title, length: 10, omission: "[...]") %></small>
                   <% end %>
                 </div>
-                <div class="top-new-review book-review text">
+                <div class="top_new_review book_review text">
                   <p id="star-rate-<%= review.id %>"></p>
                   <div>
                     <%= truncate(review.content, length: 50, omission: "[...]") %>
@@ -88,7 +88,7 @@
       <h2><i class="far fa-star"></i>注目ランキング</h2>
     </div>
     <div class="rank mx-auto py-3">
-      <div class="top-main-content searchable">
+      <div class="top_main_content searchable">
         <ul class="nav nav-tabs justify-content-center nav-pills nav-justified">
           <li class="nav-item pr-1">
             <a href="#rank1" class="nav-link active" data-toggle="tab">総合評価</a>
