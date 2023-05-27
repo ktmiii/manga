@@ -111,7 +111,7 @@
                 <%= image_tag bookmark.book.image_url + "?_ex=150x150", class: 'img-fluid' %>
               <% end %>
               <%= link_to book_path(bookmark.book), class: 'd-block text-center' do %>
-                <strong class="text"><%= truncate(bookmark.book.title, length: 12, omission: "[...]") %></strong>
+                <strong class="text"><%= truncate(bookmark.book.title, length: 9, omission: "[...]") %></strong>
               <% end %>
               <div id="bookmark_buttons_<%= bookmark.book.id %>", class="text-left mt-2 pl-2">
                 <%= render 'public/bookmarks/bookmark', book: bookmark.book %>
