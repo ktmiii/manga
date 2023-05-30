@@ -42,9 +42,9 @@
   </div>
   <div class="col-sm-8">
     <p>
-      <%= link_to '新しい順', book_path(latest: "true") %>
-     |<%= link_to '古い順', book_path(old: "true") %>
-     |<%= link_to '評価の高い順', book_path(star_count: "true") %>
+      <%= link_to '新しい順', book_path(status: 'latest') %>
+     |<%= link_to '古い順', book_path(status: 'old') %>
+     |<%= link_to '評価の高い順', book_path(status: 'star_count') %>
     </p>
     <% if @reviews.blank? %>
       <div class="text-center">
@@ -57,7 +57,7 @@
         <% end %>
       </div>
       <div id="paginateButton">
-        <%= render 'public/books/paginate_button', book: @book %>
+        <%= render 'public/books/paginate_button', book: @book, order: @order %>
       </div>
     <% end %>
 
@@ -65,7 +65,3 @@
 </div>
 
 <%= render 'public/books/rate_avg', reviews: @reviews, book: @book %>
-
-<script>
-
-</script>

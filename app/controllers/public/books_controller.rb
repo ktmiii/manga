@@ -37,19 +37,29 @@ class Public::BooksController < ApplicationController
     else
       @book = Book.find(params[:id])
     end
-    @reviews = @book.reviews.includes(:user)
+    @reviews = @book.reviews.includes(:user).page(params[:page]).per(4)
 
-    if params[:latest]
-     @reviews = @reviews.latest
-    elsif params[:old]
-     @reviews = @reviews.old
-    elsif params[:star_count]
-     @reviews = @reviews.rate_count
+    if params[:status] == 'latest'
+     @reviews = @reviews.latest.page(params[:page]).per(4)
+    elsif params[:status] == 'old'
+     @reviews = @reviews.old.page(params[:page]).per(4)
+    elsif params[:status] == 'star_count'
+     @reviews = @reviews.rate_count.page(params[:page]).per(4)
     end
-    p @reviews.pluck(:id)
+
+    @order = params[:status]
+
     if params[:page].present?
       params[:page] = (params[:page].to_i) + 1
-      @reviews = @reviews.page(params[:page]).per(4)
+      if params[:status] == 'latest'
+        @reviews = @book.reviews.latest.page(params[:page]).per(4)
+      elsif params[:status] == 'old'
+        @reviews = @book.reviews.old.page(params[:page]).per(4)
+      elsif params[:status] == 'star_count'
+        @reviews = @book.reviews.rate_count.page(params[:page]).per(4)
+      else
+        @reviews = @book.reviews.page(params[:page]).per(4)
+      end
       render 'public/books/paginate'
     else
       params[:page] = 1
