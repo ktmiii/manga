@@ -28,10 +28,16 @@
       </tr>
       <tr class="text">
         <th><label for="user_is_deleted">会員ステータス</label></th>
-        <th><%= f.radio_button :is_deleted, :true %>
-            <%= f.label :is_deleted, "退会" %>
-            <%= f.radio_button :is_deleted, :false %>
-            <%= f.label :is_deleted, "有効" %>
+        <th>
+          <%= f.label :is_deleted, for: "deleted_true" do %>
+            <%= f.radio_button :is_deleted, true, id: "deleted_true" %>
+            退会
+          <% end %>
+
+          <%= f.label :is_deleted, for: "deleted_false" do %>
+            <%= f.radio_button :is_deleted, false, id: "deleted_false" %>
+            有効
+          <% end %>
         </th>
       </tr>
       <tr class="text">

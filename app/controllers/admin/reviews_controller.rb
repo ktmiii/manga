@@ -1,4 +1,5 @@
 class Admin::ReviewsController < ApplicationController
+  before_action :authenticate_admin!
 
   def index
     @reviews = Review.all.order(created_at: :asc).page(params[:page]).per(9)
@@ -22,4 +23,5 @@ class Admin::ReviewsController < ApplicationController
   def review_params
     params.require(:review).permit(:user_id, :book_id, :content, :rate)
   end
+
 end

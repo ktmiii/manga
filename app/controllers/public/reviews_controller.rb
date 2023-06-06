@@ -3,7 +3,7 @@ class Public::ReviewsController < ApplicationController
 
   def index
     #reviewを持った本のデータを重複しないように持ってくる
-    @books = Kaminari.paginate_array(Review.group(:book_id).order('count(book_id) desc').includes(:book).map{|review|review.book}).page(params[:page]).per(12)
+    @books = Book.joins(:reviews).group(:id).order("count(reviews.book_id) desc").page(params[:page]).per(12)
   end
 
   def new
